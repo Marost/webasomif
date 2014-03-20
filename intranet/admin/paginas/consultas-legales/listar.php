@@ -10,8 +10,8 @@ $cebra=1;
 $url="listar.php";
 $buscar=$_REQUEST["busqueda"];
 
-		$rst_query=mysql_query("SELECT * FROM ap_consulta_legal WHERE id>0 ORDER BY id DESC;", $conexion);
-		$num_registros=mysql_num_rows($rst_query);
+		$rst_query=mysqli_query($conexion, "SELECT * FROM ap_consulta_legal WHERE id>0 ORDER BY id DESC;");
+		$num_registros=mysqli_num_rows($rst_query);
 			
 		$registros=10;	
 		$pagina=$_GET["pag"];
@@ -20,7 +20,7 @@ $buscar=$_REQUEST["busqueda"];
 		else
 		$inicio=0;
 		
-		$rst_query=mysql_query("SELECT * FROM ap_consulta_legal WHERE id>0 ORDER BY id DESC LIMIT $inicio, $registros;", $conexion);
+		$rst_query=mysqli_query($conexion, "SELECT * FROM ap_consulta_legal WHERE id>0 ORDER BY id DESC LIMIT $inicio, $registros;");
 		$paginas=ceil($num_registros/$registros);
 	
 	
@@ -49,8 +49,8 @@ $buscar=$_REQUEST["busqueda"];
 			$mensaje="Se ha producido un error al eliminar el registro";
 	
 	//PRIVILEGIOS USER
-	$rst_query2=mysql_query("SELECT * FROM ap_privilegio_user WHERE usuario='$user'", $conexion);
-	$fila_query3=mysql_fetch_array($rst_query2);
+	$rst_query2=mysqli_query($conexion, "SELECT * FROM ap_privilegio_user WHERE usuario='$user'");
+	$fila_query3=mysqli_fetch_array($rst_query2);
 ?>
 <link rel="stylesheet" type="text/css" href="../../css/style-listas.css">
 <script type="text/javascript">
@@ -75,7 +75,7 @@ if(confirm("¿Está seguro de borrar esta consulta?")) {
                 <tr>
                   <td colspan="2" align="center">
                   <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                  <?php while($fila_query2=mysql_fetch_array($rst_query)){ ?>
+                  <?php while($fila_query2=mysqli_fetch_array($rst_query)){ ?>
                     <tr<?php echo alt($zebra); $zebra++; ?>>
                       <td width="50%"><p>ID: <?php echo $fila_query2["id"]; ?> | Por: <strong><?php echo $fila_query2["persona"]; ?></strong> 
                       <?php if($fila_query2["respuesta"]==1){ ?>

@@ -47,17 +47,17 @@ $usuarios=$_POST["usuarios"];
 $modificar=$_POST["modificar"];
 $eliminar=$_POST["eliminar"];
 
-mysql_query("UPDATE ap_usuario SET clave='$clave', nombre='$nombre', apellidos='$apellidos', email='$email', foto='$name' WHERE usuario='". $_REQUEST["usuario"]."';",$conexion);
+mysqli_query($conexion, "UPDATE ap_usuario SET clave='$clave', nombre='$nombre', apellidos='$apellidos', email='$email', foto='$name' WHERE usuario='". $_REQUEST["usuario"]."';");
 
-mysql_query("UPDATE ap_privilegio_user SET capacitaciones=$capacitaciones, evaluacion=$evaluacion, proyectos=$proyectos, confidencial=$confidencial, foro=$foro, consultas=$consultas, sugerencia=$sugerencia, usuarios=$usuarios, modificar=$modificar, eliminar=$eliminar WHERE usuario='". $_REQUEST["usuario"]."';", $conexion);
+mysqli_query($conexion, "UPDATE ap_privilegio_user SET capacitaciones=$capacitaciones, evaluacion=$evaluacion, proyectos=$proyectos, confidencial=$confidencial, foro=$foro, consultas=$consultas, sugerencia=$sugerencia, usuarios=$usuarios, modificar=$modificar, eliminar=$eliminar WHERE usuario='". $_REQUEST["usuario"]."';");
 
 if (mysql_errno()!=0)
 {
 	echo "error al insertar los datos ". mysql_errno() . " - ". mysql_error();
-	mysql_close($conexion);
+	mysqli_close($conexion);
 	//header("Location:listar.php?mensaje=5");
 } else {
-	mysql_close($conexion);
+	mysqli_close($conexion);
 	header("Location:listar.php?mensaje=2");
 }
 

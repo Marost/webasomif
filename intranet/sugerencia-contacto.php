@@ -6,18 +6,18 @@ include("conexion/verificar_sesion.php");
 include("admin/conexion/funciones.php");
 
 	$user=$_SESSION["user-asomif"];
-	$rst_query=mysql_query("SELECT * FROM ap_privilegio_user_intranet WHERE usuario='$user';",$conexion);
-	$fila_query=mysql_fetch_array($rst_query);
+	$rst_query=mysqli_query($conexion, "SELECT * FROM ap_privilegio_user_intranet WHERE usuario='$user';");
+	$fila_query=mysqli_fetch_array($rst_query);
 
 	//FORO IZQUIERDA
-	$rst_query1=mysql_query("SELECT * FROM ap_foro_izq WHERE foro=1 ORDER BY id DESC;", $conexion);
+	$rst_query1=mysqli_query($conexion, "SELECT * FROM ap_foro_izq WHERE foro=1 ORDER BY id DESC;");
 	
 	//TEMA FORO PRINCIPAL
-	$rst_query2=mysql_query("SELECT * FROM ap_foro WHERE id>0 ORDER BY foro ASC;",$conexion);
+	$rst_query2=mysqli_query($conexion, "SELECT * FROM ap_foro WHERE id>0 ORDER BY foro ASC;");
 	
 	//PRIVILEGIOS FORO
-	$rst_foro=mysql_query("SELECT * FROM ap_foro_permiso_usuario_intranet WHERE usuario='$user'", $conexion);
-	$fila_foro=mysql_fetch_array($rst_foro);
+	$rst_foro=mysqli_query($conexion, "SELECT * FROM ap_foro_permiso_usuario_intranet WHERE usuario='$user'");
+	$fila_foro=mysqli_fetch_array($rst_foro);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -55,7 +55,7 @@ include("admin/conexion/funciones.php");
                         <li><a href="eventos.php">EVENTOS Y ACTIVIDADES</a></li>
                     	<li><a href="#">Foros</a>
                             <ul>
-                            	<?php while($fila_query2=mysql_fetch_array($rst_query2)){ ?>
+                            	<?php while($fila_query2=mysqli_fetch_array($rst_query2)){ ?>
                                 	<?php if($fila_foro[$fila_query4["permisos"]]==1){ ?>
                                     	<li><a href="foro.php?id=<?php echo $fila_query2["id"] ?>"><?php echo $fila_query2["foro"] ?></a></li>
                                     <?php } ?>

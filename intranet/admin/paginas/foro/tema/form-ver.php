@@ -6,12 +6,12 @@ header("Content-Type: text/html; charset=utf-8");
 
 $url="form-ver.php";
 
-	$rst_query=mysql_query("SELECT *, DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha2 FROM ap_foro_temas WHERE id=". $_REQUEST["id"].";", $conexion);
-	$fila_query=mysql_fetch_array($rst_query);
+	$rst_query=mysqli_query($conexion, "SELECT *, DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha2 FROM ap_foro_temas WHERE id=". $_REQUEST["id"].";");
+	$fila_query=mysqli_fetch_array($rst_query);
 	
 	//PAGINACION DE COMENTARIOS
-	$rst_query2=mysql_query("SELECT *, DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha2 FROM ap_foro_comentario WHERE tema_foro=". $_REQUEST["id"].";",$conexion);
-	$num_registros=mysql_num_rows($rst_query2);
+	$rst_query2=mysqli_query($conexion, "SELECT *, DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha2 FROM ap_foro_comentario WHERE tema_foro=". $_REQUEST["id"].";");
+	$num_registros=mysqli_num_rows($rst_query2);
 		
 	$registros=10;	
 	$pagina=$_GET["pag"];
@@ -20,7 +20,7 @@ $url="form-ver.php";
 	else
 	$inicio=0;
 	
-	$rst_query2=mysql_query("SELECT *, DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha2 FROM ap_foro_comentario WHERE tema_foro=". $_REQUEST["id"]." LIMIT $inicio, $registros;", $conexion);
+	$rst_query2=mysqli_query($conexion, "SELECT *, DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha2 FROM ap_foro_comentario WHERE tema_foro=". $_REQUEST["id"]." LIMIT $inicio, $registros;");
 	$paginas=ceil($num_registros/$registros);
 	
 	//MENSAJE
@@ -52,8 +52,8 @@ if(confirm("¿Está seguro de borrar este comentario?")) {
             	      <td width="83%" align="left"><p>
 					  <?php
 						$foro=$fila_query["foro"];
-						$rst_foro=mysql_query("SELECT * FROM ap_foro WHERE id=$foro", $conexion);
-						$fila_foro=mysql_fetch_array($rst_foro);
+						$rst_foro=mysqli_query($conexion, "SELECT * FROM ap_foro WHERE id=$foro");
+						$fila_foro=mysqli_fetch_array($rst_foro);
 						echo $fila_foro["foro"];
 						?></p></td>
           	        </tr>
@@ -75,7 +75,7 @@ if(confirm("¿Está seguro de borrar este comentario?")) {
                 <tr>
                   <td colspan="2" align="center">
                   <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                  <?php while($fila_query2=mysql_fetch_array($rst_query2)){ ?>
+                  <?php while($fila_query2=mysqli_fetch_array($rst_query2)){ ?>
                     <tr<?php echo alt($zebra); $zebra++; ?>>
                       <td width="70%"><p>Por: <strong><?php echo $fila_query2["user"]; ?></strong> - - Fecha: <strong><?php echo $fila_query2["fecha2"]; ?></strong> a las <strong><?php echo $fila_query2["hora"]; ?></strong></p></td>
                       <td width="30%" align="center" valign="middle"><p>Operaciones: 

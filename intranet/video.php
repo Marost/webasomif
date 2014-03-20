@@ -8,20 +8,20 @@ $idnoticia=$_REQUEST["id"];
 $tipo_pagina=$_REQUEST["tipo_pagina"];
 
 if($tipo_pagina=="evento"){
-	$rst_query=mysql_query("SELECT * FROM ap_eventos WHERE id=$idnoticia;", $conexion);
-	$fila_query=mysql_fetch_array($rst_query);
+	$rst_query=mysqli_query($conexion, "SELECT * FROM ap_eventos WHERE id=$idnoticia;");
+	$fila_query=mysqli_fetch_array($rst_query);
 }elseif($tipo_pagina=="capacitaciones"){
-	$rst_query=mysql_query("SELECT * FROM ap_capac_docs WHERE id=$idnoticia;", $conexion);
-	$fila_query=mysql_fetch_array($rst_query);
+	$rst_query=mysqli_query($conexion, "SELECT * FROM ap_capac_docs WHERE id=$idnoticia;");
+	$fila_query=mysqli_fetch_array($rst_query);
 }elseif($tipo_pagina=="estadisticas"){
-	$rst_query=mysql_query("SELECT * FROM ap_estadistica WHERE id=$idnoticia;", $conexion);
-	$fila_query=mysql_fetch_array($rst_query);	
+	$rst_query=mysqli_query($conexion, "SELECT * FROM ap_estadistica WHERE id=$idnoticia;");
+	$fila_query=mysqli_fetch_array($rst_query);	
 }elseif($tipo_pagina=="normas_legales"){
-	$rst_query=mysql_query("SELECT * FROM ap_evaluacion WHERE id=$idnoticia;", $conexion);
-	$fila_query=mysql_fetch_array($rst_query);	
+	$rst_query=mysqli_query($conexion, "SELECT * FROM ap_evaluacion WHERE id=$idnoticia;");
+	$fila_query=mysqli_fetch_array($rst_query);	
 }elseif($tipo_pagina=="pro_coop"){
-	$rst_query=mysql_query("SELECT * FROM ap_proyectos WHERE id=$idnoticia;", $conexion);
-	$fila_query=mysql_fetch_array($rst_query);	
+	$rst_query=mysqli_query($conexion, "SELECT * FROM ap_proyectos WHERE id=$idnoticia;");
+	$fila_query=mysqli_fetch_array($rst_query);	
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

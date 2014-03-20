@@ -12,8 +12,8 @@ $buscar=$_REQUEST["busqueda"];
 
 	if ($_REQUEST["btnbuscar"]=="")
 	{
-		$rst_query=mysql_query("SELECT * FROM ap_usuario_intranet ORDER BY usuario ASC;", $conexion);
-		$num_registros=mysql_num_rows($rst_query);
+		$rst_query=mysqli_query($conexion, "SELECT * FROM ap_usuario_intranet ORDER BY usuario ASC;");
+		$num_registros=mysqli_num_rows($rst_query);
 			
 		$registros=20;	
 		$pagina=$_GET["pag"];
@@ -22,7 +22,7 @@ $buscar=$_REQUEST["busqueda"];
 		else
 		$inicio=0;
 		
-		$rst_query=mysql_query("SELECT * FROM ap_usuario_intranet ORDER BY usuario ASC LIMIT $inicio, $registros;", $conexion);
+		$rst_query=mysqli_query($conexion, "SELECT * FROM ap_usuario_intranet ORDER BY usuario ASC LIMIT $inicio, $registros;");
 		$paginas=ceil($num_registros/$registros);
 	}
 	
@@ -31,8 +31,8 @@ $buscar=$_REQUEST["busqueda"];
 
 	if ($_REQUEST["btnbuscar"]!="" || $_REQUEST["busqueda"]!="")
 	{
-		$rst_query=mysql_query("SELECT * FROM ap_usuario_intranet WHERE usuario LIKE '%$buscar%' ORDER BY usuario ASC;", $conexion);
-		$num_registros=mysql_num_rows($rst_query);
+		$rst_query=mysqli_query($conexion, "SELECT * FROM ap_usuario_intranet WHERE usuario LIKE '%$buscar%' ORDER BY usuario ASC;");
+		$num_registros=mysqli_num_rows($rst_query);
 		
 		$registros=20;	
 		$pagina=$_GET["pag"];
@@ -41,7 +41,7 @@ $buscar=$_REQUEST["busqueda"];
 		else
 			$inicio=0;
 		
-		$rst_query=mysql_query("SELECT * FROM ap_usuario_intranet WHERE usuario LIKE '%$buscar%' ORDER BY usuario ASC LIMIT $inicio, $registros;", $conexion);
+		$rst_query=mysqli_query($conexion, "SELECT * FROM ap_usuario_intranet WHERE usuario LIKE '%$buscar%' ORDER BY usuario ASC LIMIT $inicio, $registros;");
 		$paginas=ceil($num_registros/$registros);
 		
 	}
@@ -71,8 +71,8 @@ $buscar=$_REQUEST["busqueda"];
 	//--------- CARGAR PRIVILEGIOS
 	$usuario=$_SESSION["user"];
 	
-	$rst_query2=mysql_query("SELECT * FROM ap_privilegio_user WHERE usuario='$user'", $conexion);
-	$fila_query3=mysql_fetch_array($rst_query2);
+	$rst_query2=mysqli_query($conexion, "SELECT * FROM ap_privilegio_user WHERE usuario='$user'");
+	$fila_query3=mysqli_fetch_array($rst_query2);
 	
 ?>
 <link rel="stylesheet" type="text/css" href="../../../css/style-listas.css">
@@ -127,7 +127,7 @@ if(confirm("¿Desea cerrar sesión del usuario "+user+"?")) {
                 </tr>
             </thead>
             <tbody>
-            	<?php while ($fila=mysql_fetch_array($rst_query)){ ?>
+            	<?php while ($fila=mysqli_fetch_array($rst_query)){ ?>
                 <tr<?php echo alt($zebra); $zebra++; ?>>
                     <td width="20%"><p><a href="estadistica-user.php?user=<?php echo $fila["usuario"]; ?>"><?php echo $fila["usuario"]; ?></a></p></td>
                     <td width="40%"><p><?php echo $fila["nombre"]; ?> <?php echo $fila["apellidos"]; ?></p></td>
@@ -144,8 +144,8 @@ if(confirm("¿Desea cerrar sesión del usuario "+user+"?")) {
 								</a></td>
                     	<td width="10%" align="center">
                         <?php
-						$rst_query4=mysql_query("SELECT * FROM ap_usuario_online WHERE usuario='".$fila["usuario"]."';", $conexion);
-						$fila_query4=mysql_fetch_array($rst_query4);
+						$rst_query4=mysqli_query($conexion, "SELECT * FROM ap_usuario_online WHERE usuario='".$fila["usuario"]."';");
+						$fila_query4=mysqli_fetch_array($rst_query4);
 							if($fila_query4["online"]==1){?>
                             <a href="javascript:;" onclick="cerrarSesion('<?php echo $fila["usuario"]?>')">
                         		<img src="../../../../imagenes/check.png" width="12" height="12" title="Actualmente en linea" />

@@ -1,8 +1,8 @@
 <?php
 include("conexion/conexion.php");
 $url="usuarios-conectados.php";
-$rst_query=mysql_query("SELECT * FROM ap_usuario_online WHERE online=1;", $conexion);
-$num_registros=mysql_num_rows($rst_query);
+$rst_query=mysqli_query($conexion, "SELECT * FROM ap_usuario_online WHERE online=1;");
+$num_registros=mysqli_num_rows($rst_query);
 		
 $registros=20;	
 $pagina=$_GET["pag"];
@@ -11,7 +11,7 @@ $inicio=(($pagina-1)*$registros);
 else
 $inicio=0;
 	
-$rst_query=mysql_query("SELECT * FROM ap_usuario_online WHERE online=1 LIMIT $inicio, $registros;", $conexion);
+$rst_query=mysqli_query($conexion, "SELECT * FROM ap_usuario_online WHERE online=1 LIMIT $inicio, $registros;");
 $paginas=ceil($num_registros/$registros);
 
 ?>
@@ -34,14 +34,14 @@ $paginas=ceil($num_registros/$registros);
             <td width="30%" align="center"><strong>USUARIO</strong></td>
             <td width="70%" align="center"><strong>NOMBRE Y APELLIDOS</strong></td>
   </tr>
-  		<?php while($fila_query=mysql_fetch_array($rst_query)){ ?>
+  		<?php while($fila_query=mysqli_fetch_array($rst_query)){ ?>
           <tr>
             <td align="center"><?php echo $fila_query["usuario"] ?></td>
             <td align="center">
             <?php
 			$user=$fila_query["usuario"];
-			$rst_query1=mysql_query("SELECT * FROM ap_usuario_intranet WHERE usuario='$user'", $conexion);
-			$fila_query1=mysql_fetch_array($rst_query1);
+			$rst_query1=mysqli_query($conexion, "SELECT * FROM ap_usuario_intranet WHERE usuario='$user'");
+			$fila_query1=mysqli_fetch_array($rst_query1);
 			echo $fila_query1["nombre"]." ".$fila_query1["apellidos"];
 			?>
             </td>

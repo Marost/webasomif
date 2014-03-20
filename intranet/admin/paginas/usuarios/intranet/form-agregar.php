@@ -2,10 +2,10 @@
 include("../../../conexion/conexion.php");
 header("Content-Type: text/html; charset=utf-8");
 	
-	$rst_publicar=mysql_query("SELECT * FROM ap_publicar WHERE id>0 ORDER BY id ASC;", $conexion);
-	$rst_query=mysql_query("SELECT * FROM ap_foro WHERE id>0 ORDER BY foro ASC", $conexion);
-	$rst_query2=mysql_query("SELECT * FROM ap_foro_permiso_usuario_intranet WHERE id>0", $conexion);
-	$fila_query2=mysql_query($rst_query2);
+	$rst_publicar=mysqli_query($conexion, "SELECT * FROM ap_publicar WHERE id>0 ORDER BY id ASC;");
+	$rst_query=mysqli_query($conexion, "SELECT * FROM ap_foro WHERE id>0 ORDER BY foro ASC");
+	$rst_query2=mysqli_query($conexion, "SELECT * FROM ap_foro_permiso_usuario_intranet WHERE id>0");
+	$fila_query2=mysqli_query($conexion, $rst_query2);
 ?>
 <link rel="stylesheet" type="text/css" href="../../../css/style-listas.css" />
 <script src="../../../../SpryAssets/SpryValidationConfirm.js" type="text/javascript"></script>
@@ -99,7 +99,7 @@ header("Content-Type: text/html; charset=utf-8");
                   <td><span id="spryselect2">
                     <select name="confidencial" id="confidencial">
                       <option value="0">[ Seleccionar opcion ]</option>
-                      <?php while ($fila2=mysql_fetch_array($rst_publicar)){
+                      <?php while ($fila2=mysqli_fetch_array($rst_publicar)){
 								echo "<option value='". $fila2["id"] ."'>". $fila2["publicar"] ."</option>";
 						}?>
                     </select>

@@ -25,15 +25,15 @@ if(is_uploaded_file($_FILES['archivo']['tmp_name']))
 $titulo=$_POST["titulo"];
 $contenido=$_POST["contenido"];
 
-mysql_query("INSERT INTO ap_noticias (titulo, contenido, imagen) VALUES('$titulo', '$contenido', '$name');",$conexion);
+mysqli_query($conexion, "INSERT INTO ap_noticias (titulo, contenido, imagen) VALUES('$titulo', '$contenido', '$name');");
 
 if (mysql_errno()!=0)
 {
 	echo "error al insertar los datos ". mysql_errno() . " - ". mysql_error();
-	mysql_close($conexion);
+	mysqli_close($conexion);
 	//header("Location:listar.php?mensaje=4");
 } else {
-	mysql_close($conexion);
+	mysqli_close($conexion);
 	header("Location:listar.php?mensaje=1");
 }
 

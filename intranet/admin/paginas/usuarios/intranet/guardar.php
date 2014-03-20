@@ -45,25 +45,25 @@ $cumplimiento_normativo=$_POST["cumplimiento_normativo"];
 //PRIVILEGIOS USUARIO
 $confidencial=$_POST["confidencial"];
 
-mysql_query("INSERT INTO ap_usuario_intranet (usuario, clave, nombre, apellidos, email, foto) VALUES ('$usuario', '$clave', '$nombre', '$apellidos', '$email', '$name');",$conexion);
+mysqli_query($conexion, "INSERT INTO ap_usuario_intranet (usuario, clave, nombre, apellidos, email, foto) VALUES ('$usuario', '$clave', '$nombre', '$apellidos', '$email', '$name');");
 
 //PRIVILEGIO DE USUARIO CONFIDENCIAL
-mysql_query("INSERT INTO ap_privilegio_user_intranet (usuario, confidencial) VALUES ('$usuario', $confidencial);", $conexion);
+mysqli_query($conexion, "INSERT INTO ap_privilegio_user_intranet (usuario, confidencial) VALUES ('$usuario', $confidencial);");
 
 //INSERTAR USUARIO PARA ACTIVAIDAD
-mysql_query("INSERT INTO ap_usuario_online (usuario) VALUES ('$usuario')", $conexion);
+mysqli_query($conexion, "INSERT INTO ap_usuario_online (usuario) VALUES ('$usuario')");
 
 
 //PRIVILEGIOS DE FORO
-mysql_query("INSERT INTO ap_foro_permiso_usuario_intranet (usuario, asesores_legales, auditores, consejo_directivo, contadores, defensa_gremial, gerencia_general, oficiales_atencion, oficiales_cumplimiento, rrhh, ti, unidades_riesgos, cumplimiento_normativo) VALUES('$usuario', $asesores_legales, $auditores, $consejo_directivo, $contadores, $defensa_gremial, $gerencia_general, $oficiales_atencion, $oficiales_cumplimiento, $rrhh, $ti, $unidades_riesgos, $cumplimiento_normativo)", $conexion);
+mysqli_query($conexion, "INSERT INTO ap_foro_permiso_usuario_intranet (usuario, asesores_legales, auditores, consejo_directivo, contadores, defensa_gremial, gerencia_general, oficiales_atencion, oficiales_cumplimiento, rrhh, ti, unidades_riesgos, cumplimiento_normativo) VALUES('$usuario', $asesores_legales, $auditores, $consejo_directivo, $contadores, $defensa_gremial, $gerencia_general, $oficiales_atencion, $oficiales_cumplimiento, $rrhh, $ti, $unidades_riesgos, $cumplimiento_normativo)");
 
 if (mysql_errno()!=0)
 {
 	echo "error al insertar los datos ". mysql_errno() . " - ". mysql_error();
-	mysql_close($conexion);
+	mysqli_close($conexion);
 	//header("Location:listar.php?mensaje=4");
 } else {
-	mysql_close($conexion);
+	mysqli_close($conexion);
 	header("Location:listar.php?mensaje=1");
 }
 

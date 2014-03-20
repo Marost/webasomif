@@ -2,8 +2,8 @@
 include("conexion.php");
 $email=$_POST["email"];
 
-$rst_query=mysql_query("SELECT * FROM ap_usuario_intranet WHERE email='$email'", $conexion);
-$fila_query=mysql_fetch_array($rst_query);
+$rst_query=mysqli_query($conexion, "SELECT * FROM ap_usuario_intranet WHERE email='$email'");
+$fila_query=mysqli_fetch_array($rst_query);
 
 if($fila_query["email"]==$email){
 	$destinatario = $fila_query["email"];
@@ -26,7 +26,7 @@ if($fila_query["email"]==$email){
 	$headers .= 'From: <recuperacion@asomifperu.com.pe>' . "\r\n";
 	
 	mail($destinatario,$asunto,$cuerpo,$headers);
-	mysql_close($conexion);
+	mysqli_close($conexion);
 	header("Location:../index.php");
 }elseif($fila_query["email"]!=$email){
 	header("Location:../recuperar.php?nosesion=1");

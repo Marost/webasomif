@@ -1,8 +1,8 @@
 <?php
 include("conexion/conexion.php");
 
-	$rst_datos=mysql_query("SELECT * FROM ap_empresa WHERE id=1;", $conexion);
-	$fila_datos=mysql_fetch_array($rst_datos);
+	$rst_datos=mysqli_query($conexion, "SELECT * FROM ap_empresa WHERE id=1;");
+	$fila_datos=mysqli_fetch_array($rst_datos);
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

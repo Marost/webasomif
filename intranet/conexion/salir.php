@@ -13,9 +13,9 @@ $horaFinTotal=date("H:i");
 
 
 //INSERTA REGISTRO DE SALIDA
-mysql_query("UPDATE ap_usuario_intranet_time SET f_salida='$fecha' ,salida='$horaFinTotal' WHERE identificador='".$_SESSION["identificador"]."'", $conexion);
+mysqli_query($conexion, "UPDATE ap_usuario_intranet_time SET f_salida='$fecha' ,salida='$horaFinTotal' WHERE identificador='".$_SESSION["identificador"]."'");
 
-mysql_query("UPDATE ap_usuario_online SET online=0 WHERE usuario='".$_SESSION["user-asomif"]."'", $conexion);
+mysqli_query($conexion, "UPDATE ap_usuario_online SET online=0 WHERE usuario='".$_SESSION["user-asomif"]."'");
 
 session_destroy();
 

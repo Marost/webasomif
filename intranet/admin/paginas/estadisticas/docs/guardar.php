@@ -30,15 +30,15 @@ $tipo='Documento';
 $archivo=$_POST["documento"];
 $final = end(explode('archivos/',$archivo));
 
-mysql_query("INSERT INTO ap_estadistica (taller, lugar_fecha, programa, nombre_archivo, extension, publicar, tipo, logo) VALUES('$taller', '$lugar_fecha', '$programa', '$final', '$extension', $publicar, '$tipo', '$name');",$conexion);
+mysqli_query($conexion, "INSERT INTO ap_estadistica (taller, lugar_fecha, programa, nombre_archivo, extension, publicar, tipo, logo) VALUES('$taller', '$lugar_fecha', '$programa', '$final', '$extension', $publicar, '$tipo', '$name');");
 
 if (mysql_errno()!=0)
 {
 	echo "error al insertar los datos ". mysql_errno() . " - ". mysql_error();
-	mysql_close($conexion);
+	mysqli_close($conexion);
 	//header("Location:listar.php?mensaje=4");
 } else {
-	mysql_close($conexion);
+	mysqli_close($conexion);
 	header("Location:listar.php?mensaje=1");
 }
 

@@ -4,13 +4,13 @@ include("../conexion.php");
 
 //USUARIO CREADOR
 $user_creador=$_POST["user-creador"];
-$rst_query=mysql_query("SELECT * FROM ap_usuario_intranet WHERE usuario='$user_creador'",$conexion);
-$fila_query=mysql_fetch_array($rst_query);
+$rst_query=mysqli_query($conexion, "SELECT * FROM ap_usuario_intranet WHERE usuario='$user_creador'");
+$fila_query=mysqli_fetch_array($rst_query);
 
 //USUARIO ACTUAL
 $usuario=$_SESSION["user-asomif"];
-$rst_query1=mysql_query("SELECT * FROM ap_usuario_intranet WHERE usuario='$usuario'",$conexion);
-$fila_query1=mysql_fetch_array($rst_query1);
+$rst_query1=mysqli_query($conexion, "SELECT * FROM ap_usuario_intranet WHERE usuario='$usuario'");
+$fila_query1=mysqli_fetch_array($rst_query1);
 
 //SUBIR ARCHIVO
 if(is_uploaded_file($_FILES['archivo']['tmp_name']))
@@ -43,12 +43,12 @@ if(is_uploaded_file($_FILES['archivo']['tmp_name']))
 	$nombre_f=$_POST["titulo-foro"];
 	$url=$_POST["url-pagina"];
 
-mysql_query("INSERT INTO ap_foro_comentario (user, comentario, fecha, hora, tema_foro, foro, archivo) VALUES ('$usuario', '$mensaje', '$fecha', '$hora', $tema_foro, $foro, '$name') ",$conexion);
+mysqli_query($conexion, "INSERT INTO ap_foro_comentario (user, comentario, fecha, hora, tema_foro, foro, archivo) VALUES ('$usuario', '$mensaje', '$fecha', '$hora', $tema_foro, $foro, '$name') ");
 
 if (mysql_errno()!=0)
 {
 	echo "error al insertar los datos ". mysql_errno() . " - ". mysql_error();
-	mysql_close($conexion);
+	mysqli_close($conexion);
 	//header("Location:listar.php?mensaje=4");
 } else {
 	$destinatario = $fila_query["email"]; 
@@ -86,7 +86,7 @@ if (mysql_errno()!=0)
 	
 	mail($destinatario,$asunto,$cuerpo,$headers);
 		
-	mysql_close($conexion);
+	mysqli_close($conexion);
 	header("Location:../../debate-foro.php?tema=$tema_foro&foro=$foro");
 }
 ?>

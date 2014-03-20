@@ -2,23 +2,23 @@
 include("../../../conexion/conexion.php");
 header("Content-Type: text/html; charset=iso-8859-1");
 
-	$rst_query1=mysql_query("SELECT * FROM ap_usuario WHERE usuario='". $_REQUEST["usuario"]."';", $conexion);
-	$fila_query1=mysql_fetch_array($rst_query1);
+	$rst_query1=mysqli_query($conexion, "SELECT * FROM ap_usuario WHERE usuario='". $_REQUEST["usuario"]."';");
+	$fila_query1=mysqli_fetch_array($rst_query1);
 	
-	$rst_query=mysql_query("SELECT * FROM ap_privilegio_user WHERE usuario='". $_REQUEST["usuario"]."';", $conexion);
-	$fila_query=mysql_fetch_array($rst_query);
+	$rst_query=mysqli_query($conexion, "SELECT * FROM ap_privilegio_user WHERE usuario='". $_REQUEST["usuario"]."';");
+	$fila_query=mysqli_fetch_array($rst_query);
 	
 	//PRIVILEGIO
-	$rst_publicar1=mysql_query("SELECT * FROM ap_publicar WHERE id>0 ORDER BY id ASC;", $conexion);
-	$rst_publicar2=mysql_query("SELECT * FROM ap_publicar WHERE id>0 ORDER BY id ASC;", $conexion);
-	$rst_publicar3=mysql_query("SELECT * FROM ap_publicar WHERE id>0 ORDER BY id ASC;", $conexion);
-	$rst_publicar4=mysql_query("SELECT * FROM ap_publicar WHERE id>0 ORDER BY id ASC;", $conexion);
-	$rst_publicar5=mysql_query("SELECT * FROM ap_publicar WHERE id>0 ORDER BY id ASC;", $conexion);
-	$rst_publicar6=mysql_query("SELECT * FROM ap_publicar WHERE id>0 ORDER BY id ASC;", $conexion);
-	$rst_publicar7=mysql_query("SELECT * FROM ap_publicar WHERE id>0 ORDER BY id ASC;", $conexion);
-	$rst_publicar8=mysql_query("SELECT * FROM ap_publicar WHERE id>0 ORDER BY id ASC;", $conexion);
-	$rst_publicar9=mysql_query("SELECT * FROM ap_publicar WHERE id>0 ORDER BY id ASC;", $conexion);
-	$rst_publicar10=mysql_query("SELECT * FROM ap_publicar WHERE id>0 ORDER BY id ASC;", $conexion);
+	$rst_publicar1=mysqli_query($conexion, "SELECT * FROM ap_publicar WHERE id>0 ORDER BY id ASC;");
+	$rst_publicar2=mysqli_query($conexion, "SELECT * FROM ap_publicar WHERE id>0 ORDER BY id ASC;");
+	$rst_publicar3=mysqli_query($conexion, "SELECT * FROM ap_publicar WHERE id>0 ORDER BY id ASC;");
+	$rst_publicar4=mysqli_query($conexion, "SELECT * FROM ap_publicar WHERE id>0 ORDER BY id ASC;");
+	$rst_publicar5=mysqli_query($conexion, "SELECT * FROM ap_publicar WHERE id>0 ORDER BY id ASC;");
+	$rst_publicar6=mysqli_query($conexion, "SELECT * FROM ap_publicar WHERE id>0 ORDER BY id ASC;");
+	$rst_publicar7=mysqli_query($conexion, "SELECT * FROM ap_publicar WHERE id>0 ORDER BY id ASC;");
+	$rst_publicar8=mysqli_query($conexion, "SELECT * FROM ap_publicar WHERE id>0 ORDER BY id ASC;");
+	$rst_publicar9=mysqli_query($conexion, "SELECT * FROM ap_publicar WHERE id>0 ORDER BY id ASC;");
+	$rst_publicar10=mysqli_query($conexion, "SELECT * FROM ap_publicar WHERE id>0 ORDER BY id ASC;");
 	
 ?>
 <link rel="stylesheet" type="text/css" href="../../../css/style-listas.css" />
@@ -116,7 +116,7 @@ header("Content-Type: text/html; charset=iso-8859-1");
             	        <select name="capacitaciones" id="capacitaciones">
             	          <option value="0">[ Seleccionar opcion ]</option>
             	          <?php
-                            while ($fila1=mysql_fetch_array($rst_publicar1))
+                            while ($fila1=mysqli_fetch_array($rst_publicar1))
                             {
                                 if ($fila1["id"]==$fila_query["capacitaciones"])
                                     echo "<option selected=''  value='". $fila1["id"] ."'>". $fila1["publicar"] ."</option>";
@@ -133,7 +133,7 @@ header("Content-Type: text/html; charset=iso-8859-1");
                       <select name="evaluacion" id="evaluacion">
                         <option value="0">[ Seleccionar opcion ]</option>
                         <?php
-                            while ($fila2=mysql_fetch_array($rst_publicar2))
+                            while ($fila2=mysqli_fetch_array($rst_publicar2))
                             {
                                 if ($fila2["id"]==$fila_query["evaluacion"])
                                     echo "<option selected=''  value='". $fila2["id"] ."'>". $fila2["publicar"] ."</option>";
@@ -150,7 +150,7 @@ header("Content-Type: text/html; charset=iso-8859-1");
                       <select name="proyectos" id="proyectos">
                         <option value="0">[ Seleccionar opcion ]</option>
                         <?php
-                            while ($fila3=mysql_fetch_array($rst_publicar3))
+                            while ($fila3=mysqli_fetch_array($rst_publicar3))
                             {
                                 if ($fila3["id"]==$fila_query["proyectos"])
                                     echo "<option selected=''  value='". $fila3["id"] ."'>". $fila3["publicar"] ."</option>";
@@ -167,7 +167,7 @@ header("Content-Type: text/html; charset=iso-8859-1");
                       <select name="confidencial" id="confidencial">
                         <option value="0">[ Seleccionar opcion ]</option>
                         <?php
-                            while ($fila4=mysql_fetch_array($rst_publicar4))
+                            while ($fila4=mysqli_fetch_array($rst_publicar4))
                             {
                                 if ($fila4["id"]==$fila_query["confidencial"])
                                     echo "<option selected=''  value='". $fila4["id"] ."'>". $fila4["publicar"] ."</option>";
@@ -184,7 +184,7 @@ header("Content-Type: text/html; charset=iso-8859-1");
                       <select name="foro" id="foro">
                         <option value="0">[ Seleccionar opcion ]</option>
                         <?php
-                            while ($fila5=mysql_fetch_array($rst_publicar5))
+                            while ($fila5=mysqli_fetch_array($rst_publicar5))
                             {
                                 if ($fila5["id"]==$fila_query["foro"])
                                     echo "<option selected=''  value='". $fila5["id"] ."'>". $fila5["publicar"] ."</option>";
@@ -201,7 +201,7 @@ header("Content-Type: text/html; charset=iso-8859-1");
                       <select name="consultas" id="consultas">
                         <option value="0">[ Seleccionar opcion ]</option>
                         <?php
-                            while ($fila6=mysql_fetch_array($rst_publicar6))
+                            while ($fila6=mysqli_fetch_array($rst_publicar6))
                             {
                                 if ($fila6["id"]==$fila_query["consultas"])
                                     echo "<option selected=''  value='". $fila6["id"] ."'>". $fila6["publicar"] ."</option>";
@@ -218,7 +218,7 @@ header("Content-Type: text/html; charset=iso-8859-1");
             	        <select name="sugerencia" id="sugerencia">
             	          <option value="0">[ Seleccionar opcion ]</option>
             	          <?php
-                            while ($fila10=mysql_fetch_array($rst_publicar10))
+                            while ($fila10=mysqli_fetch_array($rst_publicar10))
                             {
                                 if ($fila10["id"]==$fila_query["consultas"])
                                     echo "<option selected=''  value='". $fila10["id"] ."'>". $fila10["publicar"] ."</option>";
@@ -235,7 +235,7 @@ header("Content-Type: text/html; charset=iso-8859-1");
                       <select name="usuarios" id="usuarios">
                         <option value="0">[ Seleccionar opcion ]</option>
                         <?php
-                            while ($fila7=mysql_fetch_array($rst_publicar7))
+                            while ($fila7=mysqli_fetch_array($rst_publicar7))
                             {
                                 if ($fila7["id"]==$fila_query["usuarios"])
                                     echo "<option selected=''  value='". $fila7["id"] ."'>". $fila7["publicar"] ."</option>";
@@ -252,7 +252,7 @@ header("Content-Type: text/html; charset=iso-8859-1");
                       <select name="modificar" id="modificar">
                         <option value="0">[ Seleccionar opcion ]</option>
                         <?php
-                            while ($fila8=mysql_fetch_array($rst_publicar8))
+                            while ($fila8=mysqli_fetch_array($rst_publicar8))
                             {
                                 if ($fila8["id"]==$fila_query["modificar"])
                                     echo "<option selected=''  value='". $fila8["id"] ."'>". $fila8["publicar"] ."</option>";
@@ -269,7 +269,7 @@ header("Content-Type: text/html; charset=iso-8859-1");
                       <select name="eliminar" id="eliminar">
                         <option value="0">[ Seleccionar opcion ]</option>
                         <?php
-                            while ($fila9=mysql_fetch_array($rst_publicar9))
+                            while ($fila9=mysqli_fetch_array($rst_publicar9))
                             {
                                 if ($fila9["id"]==$fila_query["eliminar"])
                                     echo "<option selected=''  value='". $fila9["id"] ."'>". $fila9["publicar"] ."</option>";

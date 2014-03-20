@@ -12,12 +12,12 @@ include("../conexion.php");
 	$mensaje=$_POST["msj"];
 	$fecha=date('Y-m-d');
 
-mysql_query("INSERT INTO ap_consulta_legal (empresa, cargo, persona, email, movil, mensaje, fecha) VALUES ('$empresa', '$cargo', '$persona', '$email', '$movil', '$mensaje', '$fecha') ",$conexion);
+mysqli_query($conexion, "INSERT INTO ap_consulta_legal (empresa, cargo, persona, email, movil, mensaje, fecha) VALUES ('$empresa', '$cargo', '$persona', '$email', '$movil', '$mensaje', '$fecha') ");
 
 if (mysql_errno()!=0)
 {
 	echo "error al insertar los datos ". mysql_errno() . " - ". mysql_error();
-	mysql_close($conexion);
+	mysqli_close($conexion);
 	//header("Location:listar.php?mensaje=4");
 } else {
 	$destinatario = "benites@benitesabogados.com.pe"; 
@@ -49,7 +49,7 @@ if (mysql_errno()!=0)
 	
 	mail($destinatario,$asunto,$cuerpo,$headers);
 		
-	mysql_close($conexion);
+	mysqli_close($conexion);
 	header("Location:../../consulta-legal.php");
 }
 ?>

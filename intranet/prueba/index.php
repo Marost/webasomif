@@ -8,20 +8,20 @@ header("Content-Type: text/html; charset=utf-8");
 $pagina="Material de Capacitación";
 
 	$user=$_SESSION["user-asomif"];
-	$rst_query=mysql_query("SELECT * FROM ap_privilegio_user_intranet WHERE usuario='$user';",$conexion);
-	$fila_query=mysql_fetch_array($rst_query);
+	$rst_query=mysqli_query($conexion, "SELECT * FROM ap_privilegio_user_intranet WHERE usuario='$user';");
+	$fila_query=mysqli_fetch_array($rst_query);
 
 	//FORO IZQUIERDA
-	$rst_query1=mysql_query("SELECT * FROM ap_foro_izq WHERE foro=1 ORDER BY id DESC;", $conexion);
+	$rst_query1=mysqli_query($conexion, "SELECT * FROM ap_foro_izq WHERE foro=1 ORDER BY id DESC;");
 	
 	//DOCUMENTOS
-	$rst_query2=mysql_query("SELECT * FROM ap_capac_docs WHERE id>0 AND tipo='Documento' AND publicar=1 ORDER BY id DESC LIMIT 4", $conexion);
+	$rst_query2=mysqli_query($conexion, "SELECT * FROM ap_capac_docs WHERE id>0 AND tipo='Documento' AND publicar=1 ORDER BY id DESC LIMIT 4");
 	
 	//VIDEOS
-	$rst_query3=mysql_query("SELECT * FROM ap_capac_docs WHERE id>0 AND tipo='Video' AND publicar=1 ORDER BY id DESC LIMIT 4", $conexion);
+	$rst_query3=mysqli_query($conexion, "SELECT * FROM ap_capac_docs WHERE id>0 AND tipo='Video' AND publicar=1 ORDER BY id DESC LIMIT 4");
 	
 	//TEMA FORO PRINCIPAL
-	$rst_query4=mysql_query("SELECT * FROM ap_foro WHERE id>0 ORDER BY foro ASC;",$conexion);
+	$rst_query4=mysqli_query($conexion, "SELECT * FROM ap_foro WHERE id>0 ORDER BY foro ASC;");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -44,7 +44,7 @@ $pagina="Material de Capacitación";
                 <p>&nbsp;</p>
                 </div>
                 
-                <?php while($fila_query2=mysql_fetch_array($rst_query2)){ ?>
+                <?php while($fila_query2=mysqli_fetch_array($rst_query2)){ ?>
                 <div id="documentos-pdf-doc">
                     <div id="icon-pdf-doc">
                     <?php if($fila_query2["extension"]='pdf'){ ?>
@@ -84,7 +84,7 @@ $pagina="Material de Capacitación";
                 
                 <div id="espacio-hor500"></div>
                 <?php } ?>
-                <?php while($fila_query3=mysql_fetch_array($rst_query3)){ ?>
+                <?php while($fila_query3=mysqli_fetch_array($rst_query3)){ ?>
       <div id="documentos-pdf-doc">
           		<div id="icon-pdf-doc">
                 	<img src="../imagenes/icon_youtube.png" width="40" height="46" />

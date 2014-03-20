@@ -3,8 +3,8 @@ session_start();
 include("conexion/inactividad.php");
 include("conexion/conexion.php");
 include("conexion/verificar_sesion.php");
-	$cons=mysql_query("SELECT online FROM ap_usuario_online", $conexion); 
-	while($resultado=mysql_fetch_array($cons)) 
+	$cons=mysqli_query($conexion, "SELECT online FROM ap_usuario_online"); 
+	while($resultado=mysqli_fetch_array($cons)) 
 	$sumatoria+=$resultado["online"];	
 ?>
 <link rel="stylesheet" type="text/css" href="css/estilos.css"/>

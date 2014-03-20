@@ -10,8 +10,8 @@ $buscar=$_REQUEST["busqueda"];
 
 	if ($_REQUEST["btnbuscar"]=="")
 	{
-		$rst_query=mysql_query("SELECT *, DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha2 FROM ap_foro_temas WHERE id>0 ORDER BY foro ASC;", $conexion);
-		$num_registros=mysql_num_rows($rst_query);
+		$rst_query=mysqli_query($conexion, "SELECT *, DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha2 FROM ap_foro_temas WHERE id>0 ORDER BY foro ASC;");
+		$num_registros=mysqli_num_rows($rst_query);
 			
 		$registros=20;	
 		$pagina=$_GET["pag"];
@@ -20,7 +20,7 @@ $buscar=$_REQUEST["busqueda"];
 		else
 		$inicio=0;
 		
-		$rst_query=mysql_query("SELECT *, DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha2 FROM ap_foro_temas WHERE id>0 ORDER BY foro ASC LIMIT $inicio, $registros;", $conexion);
+		$rst_query=mysqli_query($conexion, "SELECT *, DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha2 FROM ap_foro_temas WHERE id>0 ORDER BY foro ASC LIMIT $inicio, $registros;");
 		$paginas=ceil($num_registros/$registros);
 	}
 	
@@ -29,8 +29,8 @@ $buscar=$_REQUEST["busqueda"];
 
 	if ($_REQUEST["btnbuscar"]!="" || $_REQUEST["busqueda"]!="")
 	{
-		$rst_query=mysql_query("SELECT *, DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha2 FROM ap_foro_temas WHERE tema_foro LIKE '%$buscar%' ORDER BY foro ASC;", $conexion);
-		$num_registros=mysql_num_rows($rst_query);
+		$rst_query=mysqli_query($conexion, "SELECT *, DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha2 FROM ap_foro_temas WHERE tema_foro LIKE '%$buscar%' ORDER BY foro ASC;");
+		$num_registros=mysqli_num_rows($rst_query);
 		
 		$registros=10;	
 		$pagina=$_GET["pag"];
@@ -39,7 +39,7 @@ $buscar=$_REQUEST["busqueda"];
 		else
 			$inicio=0;
 		
-		$rst_query=mysql_query("SELECT *, DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha2 FROM ap_foro_temas WHERE tema_foro LIKE '%$buscar%' ORDER BY foro ASC LIMIT $inicio, $registros;", $conexion);
+		$rst_query=mysqli_query($conexion, "SELECT *, DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha2 FROM ap_foro_temas WHERE tema_foro LIKE '%$buscar%' ORDER BY foro ASC LIMIT $inicio, $registros;");
 		$paginas=ceil($num_registros/$registros);
 		
 	}
@@ -109,7 +109,7 @@ if(confirm("¿Está seguro de borrar este Tema?\nSi borra este tema, tambien se 
                           </tr>
                         </thead>
                         <tbody>
-                          <?php while ($fila=mysql_fetch_array($rst_query)){ ?>
+                          <?php while ($fila=mysqli_fetch_array($rst_query)){ ?>
                           <tr<?php echo alt($zebra); $zebra++; ?>>
                             <td width="60%"><p><strong class="texto-azul12-Arial"><?php echo stripslashes(htmlspecialchars($fila["tema_foro"])) ?></strong><br />
                             Creado por <strong><?php echo $fila["usuario"]; ?></strong> el <?php echo $fila["fecha2"]; ?>
@@ -118,8 +118,8 @@ if(confirm("¿Está seguro de borrar este Tema?\nSi borra este tema, tambien se 
                               <p>
                                 <?php
 							$foro=$fila["foro"];
-							$rst_foro=mysql_query("SELECT * FROM ap_foro WHERE id=$foro", $conexion);
-							$fila_foro=mysql_fetch_array($rst_foro);
+							$rst_foro=mysqli_query($conexion, "SELECT * FROM ap_foro WHERE id=$foro");
+							$fila_foro=mysqli_fetch_array($rst_foro);
 							echo stripslashes(htmlspecialchars($fila_foro["foro"]));
 							?>
                             </p></td>

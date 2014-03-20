@@ -10,8 +10,8 @@ $buscar=$_REQUEST["busqueda"];
 
 	if ($_REQUEST["btnbuscar"]=="")
 	{
-		$rst_query=mysql_query("SELECT * FROM ap_foro_izq WHERE id>0 ORDER BY id DESC;", $conexion);
-		$num_registros=mysql_num_rows($rst_query);
+		$rst_query=mysqli_query($conexion, "SELECT * FROM ap_foro_izq WHERE id>0 ORDER BY id DESC;");
+		$num_registros=mysqli_num_rows($rst_query);
 			
 		$registros=20;	
 		$pagina=$_GET["pag"];
@@ -20,7 +20,7 @@ $buscar=$_REQUEST["busqueda"];
 		else
 		$inicio=0;
 		
-		$rst_query=mysql_query("SELECT * FROM ap_foro_izq WHERE id>0 ORDER BY id DESC LIMIT $inicio, $registros;", $conexion);
+		$rst_query=mysqli_query($conexion, "SELECT * FROM ap_foro_izq WHERE id>0 ORDER BY id DESC LIMIT $inicio, $registros;");
 		$paginas=ceil($num_registros/$registros);
 	}
 	
@@ -77,7 +77,7 @@ if(confirm("¿Está seguro de borrar este comentario?")) {
                           </tr>
                         </thead>
                         <tbody>
-                          <?php while ($fila=mysql_fetch_array($rst_query)) {?>
+                          <?php while ($fila=mysqli_fetch_array($rst_query)) {?>
                           <tr<?php echo alt($zebra); $zebra++; ?>>
                             <td width="20%"><p><?php echo $fila["usuario"]; ?></p></td>
                             <td width="70%"><p><?php echo $fila["mensaje"] ?></p></td>

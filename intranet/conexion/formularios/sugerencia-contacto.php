@@ -9,12 +9,12 @@ include("../conexion.php");
 	$movil=$_POST["movil"];
 	$mensaje=$_POST["msj"];
 
-mysql_query("INSERT INTO ap_sugerencia_contacto (empresa, cargo, persona, email, movil, mensaje) VALUES ('$empresa', '$cargo', '$persona', '$email', '$movil', '$mensaje') ",$conexion);
+mysqli_query($conexion, "INSERT INTO ap_sugerencia_contacto (empresa, cargo, persona, email, movil, mensaje) VALUES ('$empresa', '$cargo', '$persona', '$email', '$movil', '$mensaje') ");
 
 if (mysql_errno()!=0)
 {
 	echo "error al insertar los datos ". mysql_errno() . " - ". mysql_error();
-	mysql_close($conexion);
+	mysqli_close($conexion);
 	//header("Location:listar.php?mensaje=4");
 } else {
 	$destinatario = "sugerencias@asomifperu.com"; 
@@ -55,7 +55,7 @@ if (mysql_errno()!=0)
 	
 	mail($destinatario,$asunto,$cuerpo,$headers);
 		
-	mysql_close($conexion);
+	mysqli_close($conexion);
 	header("Location:../../sugerencia-contacto.php");
 }
 ?>

@@ -3,8 +3,8 @@ include("../../../conexion/conexion.php");
 header("Content-Type: text/html; charset=utf-8");
 
 	$user=$_REQUEST["user"];
-	$rst_query=mysql_query("SELECT *, DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha2 FROM ap_usuario_intranet_descargas WHERE usuario='$user'", $conexion);
-	$rst_query2=mysql_query("SELECT *, DATE_FORMAT(f_entrada,'%d/%m/%Y') AS fecha_e, DATE_FORMAT(f_salida,'%d/%m/%Y') AS fecha_s FROM ap_usuario_intranet_time WHERE usuario='$user'", $conexion);
+	$rst_query=mysqli_query($conexion, "SELECT *, DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha2 FROM ap_usuario_intranet_descargas WHERE usuario='$user'");
+	$rst_query2=mysqli_query($conexion, "SELECT *, DATE_FORMAT(f_entrada,'%d/%m/%Y') AS fecha_e, DATE_FORMAT(f_salida,'%d/%m/%Y') AS fecha_s FROM ap_usuario_intranet_time WHERE usuario='$user'");
 ?>
 <link rel="stylesheet" type="text/css" href="../../../css/style-listas.css" />
 <script src="../../../../../SpryAssets/SpryTabbedPanels.js" type="text/javascript"></script>
@@ -45,7 +45,7 @@ function cancelar() {
     <td width="31%" align="center" bgcolor="#CCCCCC"><p><strong>Página</strong></p></td>
     <td width="13%" align="center" bgcolor="#CCCCCC"><p> <strong>Descargas</strong></p></td>
   </tr>
-  <?php while($fila=mysql_fetch_array($rst_query)){ ?>
+  <?php while($fila=mysqli_fetch_array($rst_query)){ ?>
   <tr>
     <td width="16%"><p><?php echo $fila["fecha2"] ?></p></td>
     <td width="40%"><p><?php echo $fila["descarga"] ?></p></td>
@@ -64,7 +64,7 @@ function cancelar() {
     <td width="25%" align="center" bgcolor="#CCCCCC"><p><strong>Fecha de Salida</strong></p></td>
     <td width="25%" align="center" bgcolor="#CCCCCC"><p><strong>Hora Salida</strong></p></td>
   </tr>
-  <?php while($fila2=mysql_fetch_array($rst_query2)){ ?>
+  <?php while($fila2=mysqli_fetch_array($rst_query2)){ ?>
   <tr>
     <td width="25%" align="center"><p><?php echo $fila2["fecha_e"]; ?></p></td>
     <td width="25%" align="center"><p><?php echo $fila2["entrada"]; ?></p></td>

@@ -1,15 +1,15 @@
 <?php
 include ("../../../conexion/conexion.php");
 
-mysql_query("DELETE FROM ap_foro_temas WHERE id=".$_REQUEST["id"].";",$conexion);
-mysql_query("DELETE FROM ap_foro_comentario WHERE tema_foro=".$_REQUEST["id"].";",$conexion);
+mysqli_query($conexion, "DELETE FROM ap_foro_temas WHERE id=".$_REQUEST["id"].";");
+mysqli_query($conexion, "DELETE FROM ap_foro_comentario WHERE tema_foro=".$_REQUEST["id"].";");
 
 if (mysql_errno()!=0)
 {
-	mysql_close($conexion);
+	mysqli_close($conexion);
 	header("Location:listar.php?mensaje=6");
 } else {
-	mysql_close($conexion);
+	mysqli_close($conexion);
 	header("Location:listar.php?mensaje=3");
 }
 

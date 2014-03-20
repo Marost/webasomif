@@ -2,10 +2,10 @@
 include("../../../conexion/conexion.php");
 header("Content-Type: text/html; charset=utf-8");
 
-	$rst_publicar=mysql_query("SELECT * FROM ap_publicar ORDER BY publicar DESC;", $conexion);
+	$rst_publicar=mysqli_query($conexion, "SELECT * FROM ap_publicar ORDER BY publicar DESC;");
 	
-	$rst_query=mysql_query("SELECT * FROM ap_estadistica WHERE id=". $_REQUEST["id"].";", $conexion);
-	$fila_query=mysql_fetch_array($rst_query);
+	$rst_query=mysqli_query($conexion, "SELECT * FROM ap_estadistica WHERE id=". $_REQUEST["id"].";");
+	$fila_query=mysqli_fetch_array($rst_query);
 ?>
 <link rel="stylesheet" type="text/css" href="../../../css/style-listas.css" />
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
@@ -68,7 +68,7 @@ header("Content-Type: text/html; charset=utf-8");
             	          <select name="publicar" id="publicar3">
             	            <option selected="selected" value="">[Seleccione una opcion]</option>
             	            <?php
-                            while ($fila1=mysql_fetch_array($rst_publicar))
+                            while ($fila1=mysqli_fetch_array($rst_publicar))
                             {
                                 if ($fila1["id"]==$fila_query["publicar"])
                                     echo "<option selected=''  value='". $fila1["id"] ."'>". $fila1["publicar"] ."</option>";

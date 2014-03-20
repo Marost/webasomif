@@ -9,15 +9,15 @@ $publicar=$_POST["publicar"];
 $enlace=$_POST["enlace"];
 $tipo='Video';
 
-mysql_query("INSERT INTO ap_estadistica (taller, lugar_fecha, programa, enlace_video, publicar, tipo) VALUES('$taller', '$lugar_fecha', '$programa', '$enlace', $publicar, '$tipo');",$conexion);
+mysqli_query($conexion, "INSERT INTO ap_estadistica (taller, lugar_fecha, programa, enlace_video, publicar, tipo) VALUES('$taller', '$lugar_fecha', '$programa', '$enlace', $publicar, '$tipo');");
 
 if (mysql_errno()!=0)
 {
 	echo "error al insertar los datos ". mysql_errno() . " - ". mysql_error();
-	mysql_close($conexion);
+	mysqli_close($conexion);
 	//header("Location:listar.php?mensaje=4");
 } else {
-	mysql_close($conexion);
+	mysqli_close($conexion);
 	header("Location:listar.php?mensaje=1");
 }
 

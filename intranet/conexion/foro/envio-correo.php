@@ -4,13 +4,13 @@ include("../conexion.php");
 
 //USUARIO A ENVIAR CORREO
 $user_envio=$_POST["usuario"];
-$rst_query1=mysql_query("SELECT * FROM ap_usuario_intranet WHERE usuario='$user_envio'", $conexion);
-$fila_query1=mysql_fetch_array($rst_query1);
+$rst_query1=mysqli_query($conexion, "SELECT * FROM ap_usuario_intranet WHERE usuario='$user_envio'");
+$fila_query1=mysqli_fetch_array($rst_query1);
 
 //USUARIO ACTUAL
 $user_actual=$_SESSION["user-asomif"];
-$rst_query2=mysql_query("SELECT * FROM ap_usuario_intranet WHERE usuario='$user_actual'", $conexion);
-$fila_query2=mysql_fetch_array($rst_query2);
+$rst_query2=mysqli_query($conexion, "SELECT * FROM ap_usuario_intranet WHERE usuario='$user_actual'");
+$fila_query2=mysqli_fetch_array($rst_query2);
 
 //DECLARACION DE VARIABLES
 $asunto_msj=$_POST["asunto"];
@@ -21,7 +21,7 @@ $email_user=$fila_query2["email"];
 if (mysql_errno()!=0)
 {
 	echo "error al insertar los datos ". mysql_errno() . " - ". mysql_error();
-	mysql_close($conexion);
+	mysqli_close($conexion);
 	//header("Location:listar.php?mensaje=4");
 } else {
 	

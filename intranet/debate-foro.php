@@ -11,15 +11,15 @@ $url="debate-foro.php";
 
 	//USUARIO
 	$user=$_SESSION["user-asomif"];
-	$rst_query=mysql_query("SELECT * FROM ap_privilegio_user_intranet WHERE usuario='$user';",$conexion);
-	$fila_query=mysql_fetch_array($rst_query);
+	$rst_query=mysqli_query($conexion, "SELECT * FROM ap_privilegio_user_intranet WHERE usuario='$user';");
+	$fila_query=mysqli_fetch_array($rst_query);
 	
 	//MENU FORO PRINCIPAL
-	$rst_query2=mysql_query("SELECT * FROM ap_foro WHERE id>0 ORDER BY foro ASC;",$conexion);
+	$rst_query2=mysqli_query($conexion, "SELECT * FROM ap_foro WHERE id>0 ORDER BY foro ASC;");
 	
 	//MENSAJES FORO
-	$rst_query5=mysql_query("SELECT *, DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha2 FROM ap_foro_comentario WHERE tema_foro=$tema;", $conexion);
-	$num_registros=mysql_num_rows($rst_query5);
+	$rst_query5=mysqli_query($conexion, "SELECT *, DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha2 FROM ap_foro_comentario WHERE tema_foro=$tema;");
+	$num_registros=mysqli_num_rows($rst_query5);
 		
 	$registros=8;	
 	$pagina=$_GET["pag"];
@@ -28,20 +28,20 @@ $url="debate-foro.php";
 	else
 	$inicio=0;
 	
-	$rst_query5=mysql_query("SELECT *, DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha2 FROM ap_foro_comentario WHERE tema_foro=$tema LIMIT $inicio, $registros;", $conexion);
+	$rst_query5=mysqli_query($conexion, "SELECT *, DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha2 FROM ap_foro_comentario WHERE tema_foro=$tema LIMIT $inicio, $registros;");
 	$paginas=ceil($num_registros/$registros);
 	
 	//TEMA FORO
-	$rst_query3=mysql_query("SELECT *, DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha2 FROM ap_foro_temas WHERE id=$tema", $conexion);
-	$fila_query3=mysql_fetch_array($rst_query3);
+	$rst_query3=mysqli_query($conexion, "SELECT *, DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha2 FROM ap_foro_temas WHERE id=$tema");
+	$fila_query3=mysqli_fetch_array($rst_query3);
 	
 	//FORO
-	$rst_query4=mysql_query("SELECT * FROM ap_foro WHERE id=$foro", $conexion);
-	$fila_query4=mysql_fetch_array($rst_query4);
+	$rst_query4=mysqli_query($conexion, "SELECT * FROM ap_foro WHERE id=$foro");
+	$fila_query4=mysqli_fetch_array($rst_query4);
 	
 	//PRIVILEGIOS FORO
-	$rst_foro=mysql_query("SELECT * FROM ap_foro_permiso_usuario_intranet WHERE usuario='$user'", $conexion);
-	$fila_foro=mysql_fetch_array($rst_foro);
+	$rst_foro=mysqli_query($conexion, "SELECT * FROM ap_foro_permiso_usuario_intranet WHERE usuario='$user'");
+	$fila_foro=mysqli_fetch_array($rst_foro);
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -104,7 +104,7 @@ if(confirm("¿Está seguro de cerrar este Tema?")) {
                         <li><a href="eventos.php">EVENTOS Y ACTIVIDADES</a></li>
                     	<li><a href="#">Foros</a>
                             <ul>
-                            	<?php while($fila_query2=mysql_fetch_array($rst_query2)){ ?>
+                            	<?php while($fila_query2=mysqli_fetch_array($rst_query2)){ ?>
                                 	<?php if($fila_foro[$fila_query2["permisos"]]==1){ ?>
 	                                    <li><a href="foro.php?id=<?php echo $fila_query2["id"] ?>"><?php echo $fila_query2["foro"] ?></a></li>
                                     <?php } ?>
@@ -158,7 +158,7 @@ if(confirm("¿Está seguro de cerrar este Tema?")) {
                     <tr>
                       <td colspan="2">&nbsp;</td>
                     </tr>
-                    <?php while($fila_query5=mysql_fetch_array($rst_query5)){ ?>
+                    <?php while($fila_query5=mysqli_fetch_array($rst_query5)){ ?>
 						
                     <tr>
                       <td colspan='2' valign='middle' class='cabecera-fecha-foro'><strong><?php echo $fila_query5['fecha2']." - ".$fila_query5['hora'] ?> </strong></td>
@@ -169,8 +169,8 @@ if(confirm("¿Está seguro de cerrar este Tema?")) {
 					
 					<?php 
 						$user=$fila_query5['user'];
-						$rst_user=mysql_query("SELECT * FROM ap_usuario_intranet WHERE usuario='$user';",$conexion);
-						$fila_user=mysql_fetch_array($rst_user);
+						$rst_user=mysqli_query($conexion, "SELECT * FROM ap_usuario_intranet WHERE usuario='$user';");
+						$fila_user=mysqli_fetch_array($rst_user);
 					?>
 						<a href="javascript:;" onclick="MM_openBrWindow('enviar-correo.php?usuario=<?php echo $fila_query3["usuario"] ?>','enviarcorreo','width=420,height=570')" >
 						<?php echo $fila_user["nombre"]." ".$fila_user["apellidos"]?>

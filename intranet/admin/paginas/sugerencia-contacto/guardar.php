@@ -10,12 +10,12 @@ $identificador=$_POST["identificador"];
 $respuesta=1;
 $email_dest=$_POST["email"];
 
-mysql_query("INSERT INTO ap_consulta_legal (persona, email, mensaje, identificador, respuesta) VALUES('$persona', '$email', '$mensaje', $identificador, $respuesta);",$conexion);
+mysqli_query($conexion, "INSERT INTO ap_consulta_legal (persona, email, mensaje, identificador, respuesta) VALUES('$persona', '$email', '$mensaje', $identificador, $respuesta);");
 
 if (mysql_errno()!=0)
 {
 	echo "error al insertar los datos ". mysql_errno() . " - ". mysql_error();
-	mysql_close($conexion);
+	mysqli_close($conexion);
 	//header("Location:listar.php?mensaje=4");
 } else {
 	$destinatario = $email_dest; 
@@ -40,7 +40,7 @@ if (mysql_errno()!=0)
 	$headers .= 'From: <'.$email.'>' . "\r\n";
 	
 	mail($destinatario,$asunto,$cuerpo,$headers);
-	mysql_close($conexion);
+	mysqli_close($conexion);
 	header("Location:listar.php?mensaje=1");
 }
 

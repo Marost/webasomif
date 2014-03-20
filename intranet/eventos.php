@@ -10,15 +10,15 @@ $pagina="Eventos y Actividades";
 
 	$url="eventos.php";
 	$user=$_SESSION["user-asomif"];
-	$rst_query=mysql_query("SELECT * FROM ap_privilegio_user_intranet WHERE usuario='$user';",$conexion);
-	$fila_query=mysql_fetch_array($rst_query);
+	$rst_query=mysqli_query($conexion, "SELECT * FROM ap_privilegio_user_intranet WHERE usuario='$user';");
+	$fila_query=mysqli_fetch_array($rst_query);
 
 	//FORO IZQUIERDA
-	$rst_query1=mysql_query("SELECT * FROM ap_foro_izq WHERE foro=1 ORDER BY id DESC;", $conexion);
+	$rst_query1=mysqli_query($conexion, "SELECT * FROM ap_foro_izq WHERE foro=1 ORDER BY id DESC;");
 	
 	//DOCUMENTOS Y VIDEOS
-	$rst_query2=mysql_query("SELECT * FROM ap_eventos WHERE id>0 AND publicar=1 ORDER BY id DESC LIMIT 5", $conexion);
-	$num_registros=mysql_num_rows($rst_query2);
+	$rst_query2=mysqli_query($conexion, "SELECT * FROM ap_eventos WHERE id>0 AND publicar=1 ORDER BY id DESC LIMIT 5");
+	$num_registros=mysqli_num_rows($rst_query2);
 		
 	$registros=4;	
 	$pagina=$_GET["pag"];
@@ -27,19 +27,19 @@ $pagina="Eventos y Actividades";
 	else
 	$inicio=0;
 	
-	$rst_query2=mysql_query("SELECT * FROM ap_eventos WHERE id>0 AND publicar=1 ORDER BY id DESC LIMIT $inicio, $registros;", $conexion);
+	$rst_query2=mysqli_query($conexion, "SELECT * FROM ap_eventos WHERE id>0 AND publicar=1 ORDER BY id DESC LIMIT $inicio, $registros;");
 	$paginas=ceil($num_registros/$registros);
 	
 	//DOCUMENTOS VIDEOS
-	//$rst_query2=mysql_query("SELECT * FROM ap_eventos WHERE id>0 AND tipo='Documento' AND publicar=1 ORDER BY id DESC  LIMIT 4", $conexion);
-	//$rst_query3=mysql_query("SELECT * FROM ap_eventos WHERE id>0 AND tipo='Video' AND publicar=1 ORDER BY id DESC LIMIT 4", $conexion);
+	//$rst_query2=mysqli_query($conexion, "SELECT * FROM ap_eventos WHERE id>0 AND tipo='Documento' AND publicar=1 ORDER BY id DESC  LIMIT 4");
+	//$rst_query3=mysqli_query($conexion, "SELECT * FROM ap_eventos WHERE id>0 AND tipo='Video' AND publicar=1 ORDER BY id DESC LIMIT 4");
 	
 	//TEMA FORO PRINCIPAL
-	$rst_query4=mysql_query("SELECT * FROM ap_foro WHERE id>0 ORDER BY foro ASC;",$conexion);
+	$rst_query4=mysqli_query($conexion, "SELECT * FROM ap_foro WHERE id>0 ORDER BY foro ASC;");
 	
 	//PRIVILEGIOS FORO
-	$rst_foro=mysql_query("SELECT * FROM ap_foro_permiso_usuario_intranet WHERE usuario='$user'", $conexion);
-	$fila_foro=mysql_fetch_array($rst_foro);
+	$rst_foro=mysqli_query($conexion, "SELECT * FROM ap_foro_permiso_usuario_intranet WHERE usuario='$user'");
+	$fila_foro=mysqli_fetch_array($rst_foro);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -72,7 +72,7 @@ window.onload = function(){
                         <li><a href="eventos.php">EVENTOS Y ACTIVIDADES</a></li>
                     	<li><a href="#">Foros</a>
                             <ul>
-                            	<?php while($fila_query4=mysql_fetch_array($rst_query4)){ ?>
+                            	<?php while($fila_query4=mysqli_fetch_array($rst_query4)){ ?>
                                 	<?php if($fila_foro[$fila_query4["permisos"]]==1){ ?>
                                     	<li><a href="foro.php?id=<?php echo $fila_query4["id"] ?>"><?php echo $fila_query4["foro"] ?></a></li>
                                     <?php } ?>
@@ -101,7 +101,7 @@ window.onload = function(){
                 <p>&nbsp;</p>
                 </div>
                 
-                <?php while($fila_query2=mysql_fetch_array($rst_query2)){ ?>
+                <?php while($fila_query2=mysqli_fetch_array($rst_query2)){ ?>
 					<?php if($fila_query2["tipo"]=='Documento'){ ?>
                         <div id="documentos-pdf-doc">
                             <div id="icon-pdf-doc">

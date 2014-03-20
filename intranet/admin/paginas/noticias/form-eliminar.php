@@ -1,8 +1,8 @@
 <?php
 include("../../conexion/conexion.php");
 header("Content-Type: text/html; charset=utf-8");
-	$rst_query=mysql_query("SELECT * FROM ap_capac_docs WHERE id=". $_REQUEST["id"].";", $conexion);
-	$fila_query=mysql_fetch_array($rst_query);
+	$rst_query=mysqli_query($conexion, "SELECT * FROM ap_capac_docs WHERE id=". $_REQUEST["id"].";");
+	$fila_query=mysqli_fetch_array($rst_query);
 ?>
 <link rel="stylesheet" type="text/css" href="../../css/style-listas.css" />
 

@@ -8,23 +8,23 @@ include("admin/conexion/funciones.php");
 $id=$_REQUEST["id"];
 
 	$user=$_SESSION["user-asomif"];
-	$rst_query=mysql_query("SELECT * FROM ap_privilegio_user_intranet WHERE usuario='$user';",$conexion);
-	$fila_query=mysql_fetch_array($rst_query);
+	$rst_query=mysqli_query($conexion, "SELECT * FROM ap_privilegio_user_intranet WHERE usuario='$user';");
+	$fila_query=mysqli_fetch_array($rst_query);
 
 	
 	//MENU FORO PRINCIPAL
-	$rst_query2=mysql_query("SELECT * FROM ap_foro WHERE id>0 ORDER BY foro ASC;",$conexion);
+	$rst_query2=mysqli_query($conexion, "SELECT * FROM ap_foro WHERE id>0 ORDER BY foro ASC;");
 	
 	//TEMAS DEL FORO
-	$rst_query3=mysql_query("SELECT *, DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha2 FROM ap_foro_temas WHERE foro=$id ORDER BY fecha DESC", $conexion);
+	$rst_query3=mysqli_query($conexion, "SELECT *, DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha2 FROM ap_foro_temas WHERE foro=$id ORDER BY fecha DESC");
 
 	//TITULO DE FORO
-	$rst_query4=mysql_query("SELECT * FROM ap_foro WHERE id=$id LIMIT 1", $conexion);
-	$fila_query4=mysql_fetch_array($rst_query4);
+	$rst_query4=mysqli_query($conexion, "SELECT * FROM ap_foro WHERE id=$id LIMIT 1");
+	$fila_query4=mysqli_fetch_array($rst_query4);
 	
 	//PRIVILEGIOS FORO
-	$rst_foro=mysql_query("SELECT * FROM ap_foro_permiso_usuario_intranet WHERE usuario='$user'", $conexion);
-	$fila_foro=mysql_fetch_array($rst_foro);
+	$rst_foro=mysqli_query($conexion, "SELECT * FROM ap_foro_permiso_usuario_intranet WHERE usuario='$user'");
+	$fila_foro=mysqli_fetch_array($rst_foro);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -57,7 +57,7 @@ window.onload = function()
                         <li><a href="eventos.php">EVENTOS Y ACTIVIDADES</a></li>
                     	<li><a href="#">Foros</a>
                             <ul>
-                            	<?php while($fila_query2=mysql_fetch_array($rst_query2)){ ?>
+                            	<?php while($fila_query2=mysqli_fetch_array($rst_query2)){ ?>
                                 	<?php if($fila_foro[$fila_query2["permisos"]]==1){ ?>
                                     	<li><a href="foro.php?id=<?php echo $fila_query2["id"] ?>"><?php echo $fila_query2["foro"] ?></a></li>
                                     <?php } ?>
@@ -92,7 +92,7 @@ window.onload = function()
                       <td width="35%" height="25" align="center" class="cabecera_foro">Último Mensaje</td>
                         <td width="15%" height="25" align="center" class="cabecera_foro">Mensajes</td>
                     </tr>
-                   	<?php while($fila_query3=mysql_fetch_array($rst_query3)){ ?>
+                   	<?php while($fila_query3=mysqli_fetch_array($rst_query3)){ ?>
                         <tr>
                             <td width="50%" height="45" class="texto_foro-principal">
                             <span class="texto_negro14-Tahoma">
@@ -111,16 +111,16 @@ window.onload = function()
 							<a href="javascript:;" onclick="MM_openBrWindow('enviar-correo.php?usuario=<?php echo $fila_query3["usuario"] ?>','enviarcorreo','width=420,height=570')" ><?php echo $fila_query3["usuario"] ?></a></strong></span></td>
                             <td width="35%" height="25" class="ult-mensaje_foro-principal">
                                 <?php 
-									$rst_query1=mysql_query("SELECT * FROM ap_foro_comentario WHERE tema_foro=".$fila_query3["id"]." ORDER BY id DESC LIMIT 1;", $conexion);
-									$fila_query1=mysql_fetch_array($rst_query1);
+									$rst_query1=mysqli_query($conexion, "SELECT * FROM ap_foro_comentario WHERE tema_foro=".$fila_query3["id"]." ORDER BY id DESC LIMIT 1;");
+									$fila_query1=mysqli_fetch_array($rst_query1);
                                     echo substr($fila_query1["comentario"],0,35)."...<br/>";
                                     echo "<strong>".$fila_query1["user"]."</strong>";
                                 ?>
                             </td>
                             <td width="15%" height="25" align="center" class="mensajes_foro-principal">
 								<?php
-									$rst_query1_cant=mysql_query("SELECT * FROM ap_foro_comentario WHERE tema_foro=".$fila_query3["id"].";", $conexion);
-									$num_query1_cant=mysql_num_rows($rst_query1_cant);
+									$rst_query1_cant=mysqli_query($conexion, "SELECT * FROM ap_foro_comentario WHERE tema_foro=".$fila_query3["id"].";");
+									$num_query1_cant=mysqli_num_rows($rst_query1_cant);
 									echo $num_query1_cant; 
 								?>
                             </td>

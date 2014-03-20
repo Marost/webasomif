@@ -7,18 +7,18 @@ include("admin/conexion/funciones.php");
 
 	$url="consulta-legal.php";
 	$user=$_SESSION["user-asomif"];
-	$rst_query=mysql_query("SELECT * FROM ap_privilegio_user_intranet WHERE usuario='$user';",$conexion);
-	$fila_query=mysql_fetch_array($rst_query);
+	$rst_query=mysqli_query($conexion, "SELECT * FROM ap_privilegio_user_intranet WHERE usuario='$user';");
+	$fila_query=mysqli_fetch_array($rst_query);
 
 	//FORO IZQUIERDA
-	$rst_query1=mysql_query("SELECT * FROM ap_foro_izq WHERE foro=1 ORDER BY id DESC;", $conexion);
+	$rst_query1=mysqli_query($conexion, "SELECT * FROM ap_foro_izq WHERE foro=1 ORDER BY id DESC;");
 	
 	//TEMA FORO PRINCIPAL
-	$rst_query2=mysql_query("SELECT * FROM ap_foro WHERE id>0 ORDER BY foro ASC;",$conexion);
+	$rst_query2=mysqli_query($conexion, "SELECT * FROM ap_foro WHERE id>0 ORDER BY foro ASC;");
 	
 	//CONSULTAS LEGALES
-	$rst_query3=mysql_query("SELECT *, DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha2 FROM  ap_consulta_legal WHERE id>0 ORDER BY id DESC;", $conexion);
-	$num_registros=mysql_num_rows($rst_query3);
+	$rst_query3=mysqli_query($conexion, "SELECT *, DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha2 FROM  ap_consulta_legal WHERE id>0 ORDER BY id DESC;");
+	$num_registros=mysqli_num_rows($rst_query3);
 		
 	$registros=4;	
 	$pagina=$_GET["pag"];
@@ -27,12 +27,12 @@ include("admin/conexion/funciones.php");
 	else
 	$inicio=0;
 	
-	$rst_query3=mysql_query("SELECT *, DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha2 FROM  ap_consulta_legal WHERE id>0 ORDER BY id DESC LIMIT $inicio, $registros;", $conexion);
+	$rst_query3=mysqli_query($conexion, "SELECT *, DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha2 FROM  ap_consulta_legal WHERE id>0 ORDER BY id DESC LIMIT $inicio, $registros;");
 	$paginas=ceil($num_registros/$registros);
 	
 	//PRIVILEGIOS FORO
-	$rst_foro=mysql_query("SELECT * FROM ap_foro_permiso_usuario_intranet WHERE usuario='$user'", $conexion);
-	$fila_foro=mysql_fetch_array($rst_foro);
+	$rst_foro=mysqli_query($conexion, "SELECT * FROM ap_foro_permiso_usuario_intranet WHERE usuario='$user'");
+	$fila_foro=mysqli_fetch_array($rst_foro);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -69,7 +69,7 @@ include("admin/conexion/funciones.php");
                         <li><a href="eventos.php">EVENTOS Y ACTIVIDADES</a></li>
                     	<li><a href="#">Foros</a>
                             <ul>
-                            	<?php while($fila_query2=mysql_fetch_array($rst_query2)){ ?>
+                            	<?php while($fila_query2=mysqli_fetch_array($rst_query2)){ ?>
                                 	<?php if($fila_foro[$fila_query2["permisos"]]==1){ ?>
                                     	<li><a href="foro.php?id=<?php echo $fila_query2["id"] ?>"><?php echo $fila_query2["foro"] ?></a></li>
                                     <?php } ?>
@@ -144,7 +144,7 @@ include("admin/conexion/funciones.php");
                   <tr>
                     <td>&nbsp;</td>
                   </tr>
-                  <?php while($fila_query3=mysql_fetch_array($rst_query3)){ ?>
+                  <?php while($fila_query3=mysqli_fetch_array($rst_query3)){ ?>
                   <tr>
                     <td>
                         <div id="div-ancho100" class="cabecera-fecha-foro">
@@ -160,8 +160,8 @@ include("admin/conexion/funciones.php");
                             	<strong>Pregunta</strong><br />
                             	<?php 
 								$identificador=$fila_query3["identificador"];
-								$pregunta=mysql_query("SELECT * FROM ap_consulta_legal WHERE id=$identificador", $conexion);
-								$fila_pregunta=mysql_fetch_array($pregunta);
+								$pregunta=mysqli_query($conexion, "SELECT * FROM ap_consulta_legal WHERE id=$identificador");
+								$fila_pregunta=mysqli_fetch_array($pregunta);
 								echo $fila_pregunta["mensaje"]; ?><br /><br />
                                 <strong>Respuesta</strong><br />
                             <?php echo $fila_query3["mensaje"]; ?>

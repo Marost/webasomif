@@ -3,13 +3,13 @@ include("conexion.php");
 
 $user=$_POST["user"];
 $clave=$_POST["pass"];
-$rst=mysql_query("SELECT * FROM ap_usuario WHERE usuario='$user' AND clave='$clave';", $conexion);
-$num_registros=mysql_num_rows($rst);
+$rst=mysqli_query($conexion, "SELECT * FROM ap_usuario WHERE usuario='$user' AND clave='$clave';");
+$num_registros=mysqli_num_rows($rst);
 
 
 if($num_registros>0)
 {
-	$fila=mysql_fetch_array($rst);
+	$fila=mysqli_fetch_array($rst);
 	session_start();
 	$_SESSION["user"]=$fila["usuario"];
 	$_SESSION["user_nombre"]=$fila["nombre"];
@@ -17,7 +17,7 @@ if($num_registros>0)
 	$_SESSION["user_email"]=$fila["email"];
 	header("Location:../principal.php");
 } else {
-	mysql_close($conexion);
+	mysqli_close($conexion);
 	header("Location:../index.php?nosesion=2");
 }
 

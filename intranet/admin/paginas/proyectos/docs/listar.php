@@ -10,8 +10,8 @@ $buscar=$_REQUEST["busqueda"];
 
 	if ($_REQUEST["btnbuscar"]=="")
 	{
-		$rst_query=mysql_query("SELECT * FROM ap_proyectos WHERE id>0 AND tipo='Documento' ORDER BY taller ASC;", $conexion);
-		$num_registros=mysql_num_rows($rst_query);
+		$rst_query=mysqli_query($conexion, "SELECT * FROM ap_proyectos WHERE id>0 AND tipo='Documento' ORDER BY taller ASC;");
+		$num_registros=mysqli_num_rows($rst_query);
 			
 		$registros=20;	
 		$pagina=$_GET["pag"];
@@ -20,7 +20,7 @@ $buscar=$_REQUEST["busqueda"];
 		else
 		$inicio=0;
 		
-		$rst_query=mysql_query("SELECT * FROM ap_proyectos WHERE id>0 AND tipo='Documento' ORDER BY taller ASC LIMIT $inicio, $registros;", $conexion);
+		$rst_query=mysqli_query($conexion, "SELECT * FROM ap_proyectos WHERE id>0 AND tipo='Documento' ORDER BY taller ASC LIMIT $inicio, $registros;");
 		$paginas=ceil($num_registros/$registros);
 	}
 	
@@ -29,8 +29,8 @@ $buscar=$_REQUEST["busqueda"];
 
 	if ($_REQUEST["btnbuscar"]!="" || $_REQUEST["busqueda"]!="")
 	{
-		$rst_query=mysql_query("SELECT * FROM ap_proyectos WHERE taller LIKE '%$buscar%' AND tipo='Documento' ORDER BY taller ASC;", $conexion);
-		$num_registros=mysql_num_rows($rst_query);
+		$rst_query=mysqli_query($conexion, "SELECT * FROM ap_proyectos WHERE taller LIKE '%$buscar%' AND tipo='Documento' ORDER BY taller ASC;");
+		$num_registros=mysqli_num_rows($rst_query);
 		
 		$registros=10;	
 		$pagina=$_GET["pag"];
@@ -39,7 +39,7 @@ $buscar=$_REQUEST["busqueda"];
 		else
 			$inicio=0;
 		
-		$rst_query=mysql_query("SELECT * FROM ap_proyectos WHERE taller LIKE '%$buscar%' AND tipo='Documento' ORDER BY taller ASC LIMIT $inicio, $registros;", $conexion);
+		$rst_query=mysqli_query($conexion, "SELECT * FROM ap_proyectos WHERE taller LIKE '%$buscar%' AND tipo='Documento' ORDER BY taller ASC LIMIT $inicio, $registros;");
 		$paginas=ceil($num_registros/$registros);
 		
 	}
@@ -100,7 +100,7 @@ $buscar=$_REQUEST["busqueda"];
                           </tr>
                         </thead>
                         <tbody>
-                          <?php while ($fila=mysql_fetch_array($rst_query)){ ?>
+                          <?php while ($fila=mysqli_fetch_array($rst_query)){ ?>
                           <tr<?php echo alt($zebra); $zebra++; ?>>
                             <td width="50%"><p><strong class="up"><?php echo stripslashes(htmlspecialchars($fila["taller"])) ?></strong></p></td>
                             <td width="3%" align="center"><a href="form-modificar.php?id=<?php echo $fila["id"] ?>" target="mainFrame"><strong>Modificar</strong></a></td>

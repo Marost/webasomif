@@ -5,8 +5,8 @@ include("conexion/conexion.php");
 
 $user=$_SESSION["user"];
 
-$rst_query=mysql_query("SELECT * FROM ap_privilegio_user WHERE usuario='$user';", $conexion);
-$fila_query=mysql_fetch_array($rst_query);
+$rst_query=mysqli_query($conexion, "SELECT * FROM ap_privilegio_user WHERE usuario='$user';");
+$fila_query=mysqli_fetch_array($rst_query);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

@@ -2,7 +2,7 @@
 include("../../../conexion/conexion.php");
 header("Content-Type: text/html; charset=utf-8");
 
-	$rst_publicar=mysql_query("SELECT * FROM ap_publicar ORDER BY publicar DESC;", $conexion);
+	$rst_publicar=mysqli_query($conexion, "SELECT * FROM ap_publicar ORDER BY publicar DESC;");
 
 ?>
 <link rel="stylesheet" type="text/css" href="../../../css/style-listas.css" />
@@ -67,7 +67,7 @@ header("Content-Type: text/html; charset=utf-8");
             	          <select name="publicar" id="publicar3">
             	            <option selected="selected" value="">[Seleccione una opcion]</option>
             	            <?php
-							  	while ($fila=mysql_fetch_array($rst_publicar))
+							  	while ($fila=mysqli_fetch_array($rst_publicar))
 								{
 									echo "<option value='". $fila["id"] ."'>". $fila["publicar"] ."</option>";
 								}

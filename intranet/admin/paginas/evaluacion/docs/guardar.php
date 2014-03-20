@@ -28,15 +28,15 @@ $programa=$_POST["programa"];
 $publicar=$_POST["publicar"];
 $tipo='Documento';
 
-mysql_query("INSERT INTO ap_evaluacion (taller, lugar_fecha, programa, nombre_archivo, extension, publicar, tipo) VALUES('$taller', '$lugar_fecha', '$programa', '$documento', '$extension', $publicar, '$tipo');",$conexion);
+mysqli_query($conexion, "INSERT INTO ap_evaluacion (taller, lugar_fecha, programa, nombre_archivo, extension, publicar, tipo) VALUES('$taller', '$lugar_fecha', '$programa', '$documento', '$extension', $publicar, '$tipo');");
 
 if (mysql_errno()!=0)
 {
 	echo "error al insertar los datos ". mysql_errno() . " - ". mysql_error();
-	mysql_close($conexion);
+	mysqli_close($conexion);
 	//header("Location:listar.php?mensaje=4");
 } else {
-	mysql_close($conexion);
+	mysqli_close($conexion);
 	header("Location:listar.php?mensaje=1");
 }
 

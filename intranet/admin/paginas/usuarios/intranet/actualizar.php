@@ -52,21 +52,21 @@ $ti=$_POST["ti"];
 $unidades_riesgos=$_POST["unidades_riesgos"];
 $cumplimiento_normativo=$_POST["cumplimiento_normativo"];
 
-mysql_query("UPDATE ap_usuario_intranet SET clave='$clave', nombre='$nombre', apellidos='$apellidos', email='$email', foto='$name' WHERE usuario='". $_REQUEST["usuario"]."';",$conexion);
+mysqli_query($conexion, "UPDATE ap_usuario_intranet SET clave='$clave', nombre='$nombre', apellidos='$apellidos', email='$email', foto='$name' WHERE usuario='". $_REQUEST["usuario"]."';");
 
-mysql_query("UPDATE ap_privilegio_user_intranet SET confidencial=$confidencial WHERE usuario='". $_REQUEST["usuario"]."';", $conexion);
+mysqli_query($conexion, "UPDATE ap_privilegio_user_intranet SET confidencial=$confidencial WHERE usuario='". $_REQUEST["usuario"]."';");
 
 
 //ACTUALIZAR
-mysql_query("UPDATE ap_foro_permiso_usuario_intranet SET asesores_legales=$asesores_legales, auditores=$auditores, consejo_directivo=$consejo_directivo, contadores=$contadores, defensa_gremial=$defensa_gremial, gerencia_general=$gerencia_general, oficiales_atencion=$oficiales_atencion, oficiales_cumplimiento=$oficiales_cumplimiento, rrhh=$rrhh, ti=$ti, unidades_riesgos=$unidades_riesgos, cumplimiento_normativo=$cumplimiento_normativo WHERE usuario='$usuario';", $conexion);
+mysqli_query($conexion, "UPDATE ap_foro_permiso_usuario_intranet SET asesores_legales=$asesores_legales, auditores=$auditores, consejo_directivo=$consejo_directivo, contadores=$contadores, defensa_gremial=$defensa_gremial, gerencia_general=$gerencia_general, oficiales_atencion=$oficiales_atencion, oficiales_cumplimiento=$oficiales_cumplimiento, rrhh=$rrhh, ti=$ti, unidades_riesgos=$unidades_riesgos, cumplimiento_normativo=$cumplimiento_normativo WHERE usuario='$usuario';");
 
 if (mysql_errno()!=0)
 {
 	echo "<br>ERROR: <strong>". mysql_errno() . "</strong> - ". mysql_error();
-	mysql_close($conexion);
+	mysqli_close($conexion);
 	//header("Location:listar.php?mensaje=5");
 } else {
-	mysql_close($conexion);
+	mysqli_close($conexion);
 	header("Location:listar.php?mensaje=2");
 }
 
