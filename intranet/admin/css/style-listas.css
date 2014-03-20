@@ -1,0 +1,99 @@
+/*
+Menu Administracion Acordeon
+Por German Ferrari
+*/
+
+/* Reseteo */
+html, body, div, h1, h2, h3, h4, h5, h6, ul, ol, dl, li, dt, dd, p, blockquote,
+pre, form, fieldset, table, th, tr, td {margin:0; padding:0;}
+img {border:0;}
+a {text-decoration:none;}
+ol, ul {list-style:none;}
+
+/* Elementos basicos */
+
+body {
+	background:#eff4f4;
+	color:#333;
+	font-family:"Lucida Grande", Arial, Verdana;
+	font-size:12px;
+	}
+a {color:#333; font-size:12px;}
+p {
+	font-size:12px;
+}
+	
+/* Plantilla Basica */
+
+#pagina {
+	width:960px;
+	margin:20px auto;
+	background:#FFF;	
+	border:1px solid #E7E7E7;
+	}
+	
+	/* Creditos */
+	
+	#creditos {
+		background:#FBFCFC;		
+		border-bottom:5px solid #ebf1f1;
+		padding:20px;
+		}	
+	#creditos p {line-height:150%; margin-bottom:0px;}
+	#creditos a {color:#47595F; border-bottom:1px dotted #FFF;}
+	#creditos a:hover {color:#111; border-bottom:1px dotted #333;}
+	
+	/* Contenido */
+
+	#contenido {
+		padding:10px 0 10px 0;
+		}
+		
+	#contenido h2 {
+		font-family:"Myriad Pro", Verdana, Arial;
+		font-size:20px;
+		font-style:italic;
+		font-weight:bold;
+		padding:5px 20px;
+		letter-spacing:-1px;
+		color:#ebf1f1;
+		background:#333;
+		text-shadow:#000 0px -2px 0px;
+		}
+		
+	#contenido table {
+		background:#F2F6F6;
+		}
+		#contenido table thead {
+			background:#444;
+			color:#eff4f4;
+			font-weight:bold;
+			text-transform:uppercase;			
+			font-family:"Myriad Pro", Verdana, Arial;
+			font-size:13px;
+			letter-spacing:0px;
+			text-align:left;
+			}			
+	#contenido table th,
+	#contenido table td {
+		padding:5px;
+		}
+	#contenido table td {
+		border-bottom:1px solid #F0F0F0;
+		vertical-align:middle;
+		}
+	#contenido table tr.alt {
+		background:#FFF;
+		}
+
+.mensaje{
+	color:#F00;
+	font-weight:bold;
+	font-size:13px;
+}
+
+.texto-azul12-Arial{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#06C;
+}

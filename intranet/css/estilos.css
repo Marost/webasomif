@@ -1,0 +1,1207 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*RESET*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd,
+fieldset, form, label, legend, caption{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	/*outline: 0;*/
+	font-size: 100%;
+	vertical-align: baseline;
+	/*background: transparent;*/
+}
+body {
+	line-height: 1;
+}
+
+/*blockquote, q {quotes: none;}*/
+blockquote:before, blockquote:after,
+q:before, q:after {
+	/*content: '';*/
+	/*content: none;*/
+}
+/*:focus {outline: 0;}*/
+ins {text-decoration: none;}
+del {text-decoration: line-through;}
+
+
+/*--------- FONT FACE -----------*/
+
+@font-face {
+	font-family: 'MyriadStdTiltRegular';
+	src: url('../fonts/myriad/myriadstd-tilt.eot');
+	src: local('☺'), url('../fonts/myriad/myriadstd-tilt.woff') format('woff'), url('../fonts/myriad/myriadstd-tilt.ttf') format('truetype'), url('../fonts/myriad/myriadstd-tilt.svg#webfont') format('svg');
+}
+
+@font-face {
+	font-family: 'MyriadProRegular';
+	src: url('../fonts/myriad-pro/myriadpro-regular.eot');
+	src: local('☺'), url('../fonts/myriad-pro/myriadpro-regular.woff') format('woff'), url('../fonts/myriad-pro/myriadpro-regular.ttf') format('truetype'), url('../fonts/myriad-pro/myriadpro-regular.svg#webfont') format('svg');
+}
+
+@font-face {
+	font-family: 'MyriadProBold';
+	src: url('../fonts/myriad-pro-bold/myriadpro-bold.eot');
+	src: local('☺'), url('../fonts/myriad-pro-bold/myriadpro-bold.woff') format('woff'), url('../fonts/myriad-pro-bold/myriadpro-bold.ttf') format('truetype'), url('../fonts/myriad-pro-bold/myriadpro-bold.svg#webfont') format('svg');
+}
+
+
+/*-------- ESTILOS GENERALES --------*/
+
+body#login{	background:url(../imagenes/fondo-login.jpg) repeat; }
+
+body#content-principal{
+	background-image:url(../imagenes/fondo.jpg);
+	background-repeat:no-repeat;
+	background-position:top;
+	background-color:#ededed;
+	background-attachment:fixed;
+}
+
+p{line-height:18px;}
+
+#principal{
+	width:100%;
+	float:left;
+}
+
+#superior{
+	width:100%;
+	float:left;
+	/*background:url(../imagenes/fondo-superior-total.gif) repeat center;*/
+	z-index:0;
+	position:relative;
+}
+
+#interior{
+	width:950px;
+	height:auto;
+	margin-left:auto;
+	margin-right:auto;
+	z-index:1;
+	position:relative;
+}
+
+#interior-sombra{
+	width:100%;
+	float:left;
+	background:url(../imagenes/barra_trans-negro.png);
+	background-position:left;
+	background-repeat:repeat-y;
+}
+
+#contenido{	width:100%;	float:left; }
+
+#content_login{
+	width:500px;
+	margin-left:auto;
+	margin-right:auto;
+	padding:70px 0 0 0;
+}
+
+#img_login{
+	width:100%;
+	float:left;
+	text-align:center;
+	padding:10px 0 10px 0;
+}
+
+#formulario_login{
+	width:100%;
+	height:220px;
+	float:left;
+}
+
+#espacio_login{	
+	width:250px; 
+	height:15px; float:left;}
+
+#input_login{
+	width:100%;
+	float:left;
+	text-align:center;
+}
+
+#input_login input{
+	width:175px;
+	height:16px;
+	padding:5px 5px 5px 15px;
+	background:url(../imagenes/fondo-input-login.png);
+	border:none;
+	font-size:18px;
+	font-family:Tahoma, Geneva, sans-serif;
+}
+
+#boton_login{
+	width:100%;
+	float:left;
+	text-align:center;
+}
+
+#mensaje{
+	width:100%;
+	height:25px;
+	float:left;
+	padding:10px 0 0 0;
+	text-align:center;
+	color:#F00;
+	font-weight:bold;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+}
+
+#texto-login{
+	width:100%;
+	float:left;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	padding:10px 0 0 0;
+	line-height:18px;
+	text-align:center;
+}
+
+#barra-superior{
+	background:url(../imagenes/fondo-sup-intra.png) no-repeat;
+	width:950px;
+	float:left;
+	z-index:2;
+	position:relative;
+}
+
+#titulo-principal{
+	width:230px;
+	float:left;
+	padding:75px 0 0 0;
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:13px;
+	color:#999;
+}
+
+#logo-superior{
+	width:245px;
+	float:left;
+	padding:45px 0 0 25px;
+}
+
+#user-superior{
+	width:148px;
+	padding:5px 0 0 0;
+	text-align:right;
+	z-index:3;
+	position:absolute;
+	left: 798px;
+	top: -1px;
+	height: 65px;
+}
+
+#fecha{
+	width:120px;
+	height:18px;
+	background:url(../imagenes/fondo-fecha.png);
+	z-index:3;
+	position:absolute;
+	text-align:center;
+	padding:7px 0 0 0;
+	font-size:13px;
+	font-family:'MyriadProRegular';
+	color:#003978;
+	left: 691px;
+	top: 50px;
+}
+
+img#salir{ padding:10px 10px 0 0; }
+
+#panel-izq-menu{
+	width:135px;
+	margin:0;
+	float:left;
+	padding:10px 0 10px 25px;
+	text-align:right;
+	font-size:12px;
+	font-weight:bold;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#FFF;
+	z-index:4;
+}
+
+.texto-blanco12-Arial{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	background:url(../imagenes/fondo-menu-out.png) repeat;
+	color:#fff;
+	padding:4px;
+}
+
+.texto-blanco12-Arial a{
+	text-decoration:none;
+	color:#FFF;
+	font-weight:bold;
+}
+
+.texto-negro12-Arial{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	background:url(../imagenes/fondo-menu-over.png) repeat;
+	color:#000;
+	padding:4px;
+}
+
+.texto-negro12-Arial a{
+	text-decoration:none;
+	color:#000;
+	font-weight:bold;
+}
+
+.texto-blanco12-Arial-conf{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	background:url(../imagenes/fondo-menu-conf.png) repeat;
+	color:#fff;
+	padding:4px;
+}
+
+.texto-blanco12-Arial-conf a{
+	text-decoration:none;
+	color:#fff;
+	font-weight:bold;
+}
+
+#panel-izq-info{
+	width:520px;
+	float:left;
+	margin:15px 0 15px 0;
+	padding:0 10px 15px 10px;
+	border-left:2px solid #666;
+	border-right:2px solid #666;
+}
+
+#contenido-info-interes{
+	width:510px;
+	float:left;
+	padding:5px;
+	text-align:justify;
+	border-bottom:2px solid	#666;
+}
+
+#img-info-interes1{
+	width:215px;
+	float:right;
+	padding:3px 5px 5px 5px;
+}
+
+#img-info-interes2{
+	width:215px;
+	float:left;
+	padding:5px;
+}
+
+#panel-der-foro{
+	width:180px;
+	min-height:100%;
+	float:left;
+	margin:10px 0 0 10px;
+	background:#FFF;
+	padding:7px 10px 10px 10px;
+}
+
+#contenido-foro{
+	width:158px;
+	height:445px;
+	float:left;
+	background:#fff;
+	padding:5px;
+	text-align:left;
+}
+
+#panel-comentar{
+	width:180px;
+	float:left;
+	padding:10px 0 0 0;
+	z-index:3;
+	position:relative;
+}
+
+textarea#comentar-foro{
+	width:174px;
+	height:50px;
+	border:2px solid #003978;
+}
+
+#inferior{
+	width:100%;
+	float:left;
+	/*background:url(../imagenes/fondo-inferior-total.gif) repeat center;*/
+	z-index:0;
+	position:relative;
+}
+
+#barra-inferior{
+	background:url(../imagenes/fondo-inf-intra.png);
+	background-repeat:no-repeat;
+	width:950px;
+	height:79px;
+	float:left;
+	z-index:2;
+	position:relative;
+	font-size:12px;
+	color:#039;
+	font-weight:bold;
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+#barra-inferior a{
+	text-decoration:none;
+	font-size:12px;
+	color:#039;
+	font-weight:bold;
+	font-family:Arial, Helvetica, sans-serif;	
+}
+
+#leyenda{
+	width:180px;
+	float:left;
+	font-size:11px;
+}
+
+#busqueda-directorio{
+	width:506px;
+	float:left;
+	border:2px solid #999;
+	padding:5px;
+}
+
+#resultado-busq-directorio{
+	width:490px;
+	float:left;
+	border:2px solid #000;
+	padding:5px;
+}
+
+#busqueda-directorio input{
+	border:#000 2px solid;
+	padding:2px;
+}
+
+#tabla-directorio{
+	width:510px;
+	float:left;
+	padding:20px 5px 5px 5px;
+}
+
+
+/*--------- CLASES TEXTO ------------*/
+
+.texto-blanco15-MyriadProBold{
+	font-family:'MyriadProBold';
+	font-size:15px;
+	color:#fff;
+}
+
+.texto-blanco15-MyriadProBold a{
+	font-family:'MyriadProBold';
+	font-size:15px;
+	color:#fff;
+	text-decoration:none;
+}
+
+.texto-negro15-MyriadProBold{
+	font-family:'MyriadProBold';
+	font-size:15px;
+	color:#000;
+}
+
+.texto-negro15-MyriadProBold a{
+	font-family:'MyriadProBold';
+	font-size:15px;
+	color:#000;
+	text-decoration:none;
+}
+
+.texto-azul14-MyriadProBold{
+	font-family:'MyriadProBold';
+	font-size:14px;
+	color:#003978;
+}
+
+.texto-azul14-MyriadProBold a{
+	font-family:'MyriadProBold';
+	font-size:14px;
+	color:#003978;
+	text-decoration:none;
+}
+
+
+.texto-blanco15-MyriadProRegular{
+	font-family:'MyriadProRegular';
+	font-size:15px;
+	color:#fff;
+}
+
+.texto-negro12-MyriadProRegular{
+	font-family:'MyriadProRegular';
+	font-size:11px;
+	color:#000;
+}
+
+.texto-negro9-MyriadProRegular{
+	font-family:'MyriadProRegular';
+	font-size:9px;
+	color:#000;
+}
+
+.texto-verde10-MyriadProRegular{
+	font-family:'MyriadProRegular';
+	font-size:10px;
+	color:#0C0;
+}
+
+.texto-celeste10-MyriadProRegular{
+	font-family:'MyriadProRegular';
+	font-size:10px;
+	color:#0CF;
+}
+
+.texto-rojo10-MyriadProRegular{
+	font-family:'MyriadProRegular';
+	font-size:10px;
+	color:#F00;
+}
+
+.texto-verde12-MyriadProRegular{
+	font-family:'MyriadProRegular';
+	font-size:11px;
+	color:#0C0;
+}
+
+.texto-celeste12-MyriadProRegular{
+	font-family:'MyriadProRegular';
+	font-size:11px;
+	color:#0CF;
+}
+
+.texto-rojo12-MyriadProRegular{
+	font-family:'MyriadProRegular';
+	font-size:11px;
+	color:#F00;
+}
+
+.texto-negro11-Arial{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#000;
+}
+
+.texto-negro10-Arial{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:10px;
+	color:#000;
+}
+
+.texto-azul12-Arial{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	background:#004C98;
+	border:2px #1B1464 solid;
+	color:#FAAA00;
+	padding:3px;
+}
+
+.texto-azul12-Arial a{
+	color:#FAAA00;
+	font-weight:bold;
+	text-decoration:none;
+}
+
+.texto-negro12-Arial-menu{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	background:#004C98;
+	border:2px #03F solid;
+	color:#FAAA00;
+	padding:3px;
+}
+
+.texto-negro12-Arial-menu{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	background:#FCEECC;
+	border:2px #000 solid;
+	color:#000;
+	padding:3px;
+}
+
+.texto-negro12-Arial-menu a{
+	color:#000;
+	font-weight:bold;
+	text-decoration:none;
+}
+
+#documentos-pdf-doc{
+	width:500px;
+	height:auto;
+	float:left;
+	z-index:3;
+	position:relative;
+}
+
+#icon-pdf-doc{
+	width:95px;
+	float:left;
+	padding:0 5px 0 0;
+	text-align:center;
+}
+
+#datos-pdf-doc{
+	width:390px;
+	float:left;
+	padding:0 0 0 5px;
+}
+
+#taller-fecha-pdf-doc{
+	width:250px;
+	float:left;
+	padding:3px 0 3px 0;
+}
+
+#logo-pdf-doc{
+	width:140px;
+	float:left;
+}
+
+#programa-pdf-doc{
+	width:100%;
+	float:left;
+	padding:3px 0 3px 0;
+}
+
+#programa-pdf-doc #programa p{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:9px;
+	color:#000;
+}
+
+.texto-azul13-MyriadProRegular{
+	font-size:13px;
+	font-family:'MyriadProRegular';
+	color:#06F;
+}
+
+.texto-azul13-MyriadProRegular a{
+	font-size:13px;
+	font-family:'MyriadProRegular';
+	color:#06F;
+	text-decoration:none;
+}
+
+.texto-azul13-MyriadProBold{
+	font-size:13px;
+	font-family:'MyriadProBold';
+	color:#003978;
+}
+
+.texto-azul11-MyriadProBold{
+	font-size:12px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#003978;
+	font-weight:bold;
+}
+
+/*-----------------------*/
+
+#espacio-hor500{
+	width:500px;
+	height:20px;
+	float:left;
+	background:url(../imagenes/separaciom-hor.png);
+}
+
+#btn-descargar{
+	width:100%;
+	float:left;
+}
+
+#contenido525{
+	width:502px;
+	float:left;
+	background:#FFF;
+	margin:10px 0 0 30px;
+	padding:15px 10px 15px 13px;
+}
+
+#contenido740{
+	width:740px;
+	height:auto;
+	float:left;
+	background:#FFF;
+	margin:10px 0 0 10px;
+	padding:15px 10px 15px 13px;
+}
+
+#panel-noticia{
+	width:500px;
+	float:left;
+	padding:5px 0 5px 0;
+	z-index:3;
+}
+
+#imagen-noticia{
+	width:205px;
+	float:left;
+	padding:5px 0 0 0;
+}
+
+#contenido-noticia{
+	width:280px;
+	float:left;
+	padding:5px;
+}
+
+#titulo-noticia,
+#descripcion-noticia{
+	width:100%;
+	float:left;
+	text-align:left;
+}
+
+#descripcion-noticia p{
+	line-height:13px;
+}
+
+#titulo-noticia{ padding:0 0 3px 0;}
+
+#texto-footer-izq{
+	width:550px;
+	float:left;
+	padding:60px 0 0 15px;
+	text-align:left;
+}
+
+#texto-footer-der{
+	width:350px;
+	float:right;
+	padding:60px 15px 0 0;
+	text-align:right;
+}
+
+#logo-trans{
+	width:628px;
+	height:500px;
+	background:url(../imagenes/logo-trans.png);
+	position:absolute;
+	z-index:2;
+	left: 215px;
+	top: 47px;
+}
+
+#tema_foro-principal{
+	width:736px;
+	border:2px solid #039 outset;
+	float:left;
+}
+
+.cabecera_foro{
+	background:url(../imagenes/cabecera-foro.jpg);
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:13px;
+	font-weight:bold;
+	letter-spacing:3px;
+}
+
+.texto_foro-principal{
+	border:1px solid #039;
+	padding:0 0 0 10px;
+	line-height:17px;
+}
+
+.ult-mensaje_foro-principal{
+	border:1px solid #039;
+	padding:0 0 0 10px;
+	line-height:17px;
+	background:#E8E8E8;
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:12px;
+}
+
+.mensajes_foro-principal{
+	border:1px solid #039;
+	padding:0 0 0 10px;
+	line-height:17px;
+	background:#CFCFCF;
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:14px;
+	font-weight:bold;
+}
+
+.texto_negro14-Tahoma{
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:14px;
+	font-weight:bold;
+	letter-spacing:1px;
+}
+
+.texto_negro14-Tahoma a{
+	text-decoration:none;
+	font-size:14px;
+	font-weight:bold;
+	color:#000;
+}
+
+.tema-foro{
+	border-bottom:2px solid #06C;
+}
+
+.cabecera-fecha-foro{
+	background:url(../imagenes/cabecera-fecha-foro.jpg);
+	height:22px;
+	color:#FFF;
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:11px;
+	letter-spacing:1px;
+	padding:3px 0 0 10px;
+}
+
+.cabecera-fecha-foro a{
+	text-decoration:none;
+	color:#FFF;
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:11px;
+}
+
+.cabecera-rojo{
+	background:url(../imagenes/cabecera-rojo.jpg);
+	height:22px;
+	color:#fff;
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:11px;
+	letter-spacing:1px;
+	padding:3px 0 0 10px;
+}
+
+.datos-user-foro{
+	background:url(../imagenes/datos-user-foro.jpg);
+	background-repeat:no-repeat;
+	background-color:#FFF;
+	padding:10px;
+	width:120px;
+}
+
+.texto_negro12-Tahoma-bold{
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:12px;
+	color:#000;
+	font-weight:bold;
+}
+
+.texto_negro12-Tahoma-bold a{
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:12px;
+	color:#000;
+	font-weight:bold;
+	text-decoration:none;
+}
+
+#imagen-user-foro{
+	width:100%;
+	float:left;
+	text-align:center;
+	padding:10px 0 0 0;
+}
+
+.comment-foro-user{
+	padding:10px;
+	text-align:justify;
+	font-family:Tahoma, Geneva, sans-serif;
+	line-height:17px;
+	font-size:11px;
+}
+
+textarea#foro-principal{background:#E3E3E3;}
+
+#div-ancho100{ width:100%; float:left;}
+#div-ancho100-border2{ width:176px; float:left; border:2px #003978 solid;}
+
+#nuevo-tema{width:585px; float:left;}
+
+#img-nuevo-tema{width:150px; float:left;}
+
+#programa p{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:9px;
+	color:#000;
+}
+
+.paginacion{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#06F;
+}
+
+.paginacion a{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	padding:2px;
+	border:1px solid #06F;
+	color:#06F;
+	text-decoration:none;
+}
+
+#content-pregunta{
+	width:470px;
+	float:left;
+	background:#CCC;
+	padding:5px;
+}
+
+#titulo-condicion{
+	width:600px;
+	float:left;
+}
+
+#contenido-condicion{
+	width:580px;
+	float:left;
+	padding:10px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	text-align:justify;	
+}
+
+#titulo-envio{
+	width:420px;
+	float:left;
+}
+
+#contenido-envio{
+	width:400px;
+	float:left;
+	padding:10px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	text-align:justify;	
+}
+
+#contenido-condicion ul li{
+	line-height:18px;	
+}
+
+/*------------------------------*/
+/*MENU*/
+ul#confidencial,
+ul#confidencial li,
+ul#confidencial ul {
+  margin: 0;
+  border: 0 none;
+  padding: 0;
+  width: 135px; /*For KHTML*/
+  list-style: none;
+}
+
+ul#confidencial li {
+	display: block !important; /*For GOOD browsers*/
+	display: inline; /*For IE*/
+	position: relative;
+	text-align:right;
+}
+
+ul#confidencial a {
+	border: 1px solid #FFF;
+	border-right-color: #CCC;
+	border-bottom-color: #CCC;
+	text-transform:uppercase;
+	padding: 10px 6px;
+	display: block;
+	background:url(../imagenes/fondo-menu-conf.png);
+	color: #fff;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	text-decoration: none;
+}
+
+ul#confidencial a:hover,
+ul#confidencial li:hover a,
+ul#confidencial li.iehover a {
+  background:url(../imagenes/fondo-menu-conf.png);
+  color: #000;
+}
+
+ul#confidencial li:hover li a,
+ul#confidencial li.iehover li a {
+  background:url(../imagenes/fondo-menu-out.png);
+  color: #fff;
+}
+
+ul#confidencial li:hover li a:hover,
+ul#confidencial li:hover li:hover a,
+ul#confidencial li.iehover li a:hover,
+ul#confidencial li.iehover li.iehover a {
+  background:url(../imagenes/fondo-menu-over.png);
+  color: #000;
+}
+
+ul#confidencial li:hover li:hover li a,
+ul#confidencial li.iehover li.iehover li a {
+  background: #EEE;
+  color: #666;
+}
+
+ul#confidencial li:hover li:hover li a:hover,
+ul#confidencial li:hover li:hover li:hover a,
+ul#confidencial li.iehover li.iehover li a:hover,
+ul#confidencial li.iehover li.iehover li.iehover a {
+  background: #CCC;
+  color: #FFF;
+}
+
+ul#confidencial li:hover li:hover li:hover li a,
+ul#confidencial li.iehover li.iehover li.iehover li a {
+  background: #EEE;
+  color: #666;
+}
+
+ul#confidencial li:hover li:hover li:hover li a:hover,
+ul#confidencial li.iehover li.iehover li.iehover li a:hover {
+  background: #CCC;
+  color: #FFF;
+}
+
+ul#confidencial ul,
+ul#confidencial ul ul,
+ul#confidencial ul ul ul {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 160px;
+
+}
+
+ul#confidencial li:hover ul ul,
+ul#confidencial li:hover ul ul ul,
+ul#confidencial li.iehover ul ul,
+ul#confidencial li.iehover ul ul ul { display: none;}
+
+ul#confidencial li:hover ul,
+ul#confidencial ul li:hover ul,
+ul#confidencial ul ul li:hover ul,
+ul#confidencial li.iehover ul,
+ul#confidencial ul li.iehover ul,
+ul#confidencial ul ul li.iehover ul { display: block;}
+
+
+/*---------------------------------------------------------------*/
+/*MENU*/
+ul#navmenu,
+ul#navmenu li,
+ul#navmenu ul {
+	margin: 0;
+	padding: 0;
+	width: 135px;
+	list-style: none;
+	z-index:4;
+}
+
+ul#navmenu li {
+	display: block !important;
+	display: inline;
+	position: relative;
+}
+
+ul#navmenu a {
+	border: 1px solid #FFF;
+	text-transform:uppercase;
+	padding: 10px 6px;
+	display: block;
+	background:url(../imagenes/fondo-menu-out.png);
+	color: #fff;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	text-decoration: none;
+}
+
+ul#navmenu a:hover,
+ul#navmenu li:hover a,
+ul#navmenu li.iehover a {
+  background:url(../imagenes/fondo-menu-over.png);
+  color: #000;
+}
+
+ul#navmenu li:hover li a,
+ul#navmenu li.iehover li a {
+  background:url(../imagenes/fondo-menu-out-oscuro.png);
+  color: #fff;
+}
+
+ul#navmenu li:hover li a:hover,
+ul#navmenu li:hover li:hover a,
+ul#navmenu li.iehover li a:hover,
+ul#navmenu li.iehover li.iehover a {
+  background:url(../imagenes/fondo-menu-over-oscuro.png);
+  color: #000;
+}
+
+ul#navmenu li:hover li:hover li a,
+ul#navmenu li.iehover li.iehover li a {
+  background: #EEE;
+  color: #666;
+}
+
+ul#navmenu li:hover li:hover li a:hover,
+ul#navmenu li:hover li:hover li:hover a,
+ul#navmenu li.iehover li.iehover li a:hover,
+ul#navmenu li.iehover li.iehover li.iehover a {
+  background: #CCC;
+  color: #FFF;
+}
+
+ul#navmenu li:hover li:hover li:hover li a,
+ul#navmenu li.iehover li.iehover li.iehover li a {
+  background: #EEE;
+  color: #666;
+}
+
+ul#navmenu li:hover li:hover li:hover li a:hover,
+ul#navmenu li.iehover li.iehover li.iehover li a:hover {
+  background: #CCC;
+  color: #FFF;
+}
+
+ul#navmenu ul,
+ul#navmenu ul ul,
+ul#navmenu ul ul ul {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 135px;
+
+}
+
+ul#navmenu li:hover ul ul,
+ul#navmenu li:hover ul ul ul,
+ul#navmenu li.iehover ul ul,
+ul#navmenu li.iehover ul ul ul { display: none;}
+
+ul#navmenu li:hover ul,
+ul#navmenu ul li:hover ul,
+ul#navmenu ul ul li:hover ul,
+ul#navmenu li.iehover ul,
+ul#navmenu ul li.iehover ul,
+ul#navmenu ul ul li.iehover ul { display: block;}
+
+/*---------------------------------------------------------------*/
+/*MENU*/
+ul#navmenu2,
+ul#navmenu2 li,
+ul#navmenu2 ul {
+	margin: 0;
+	padding: 0;
+	width: 135px;
+	list-style: none;
+	z-index:4;
+}
+
+ul#navmenu2 li {
+	display: block !important;
+	display: inline;
+	position: relative;
+}
+
+ul#navmenu2 a {
+	/*border: 1px solid #FFF;*/
+	text-transform:uppercase;
+	padding: 10px 6px;
+	display: block;
+	background:url(../imagenes/fondo-menu-out.png);
+	color: #fff;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	text-decoration: none;
+}
+
+ul#navmenu2 a:hover,
+ul#navmenu2 li:hover a,
+ul#navmenu2 li.iehover a {
+  background:url(../imagenes/fondo-menu-over.png);
+  color: #000;
+}
+
+ul#navmenu2 li:hover li a,
+ul#navmenu2 li.iehover li a {
+  background:url(../imagenes/fondo-menu-out-oscuro.png);
+  color: #fff;
+}
+
+ul#navmenu2 li:hover li a:hover,
+ul#navmenu2 li:hover li:hover a,
+ul#navmenu2 li.iehover li a:hover,
+ul#navmenu2 li.iehover li.iehover a {
+  background:url(../imagenes/fondo-menu-over-oscuro.png);
+  color: #000;
+}
+
+ul#navmenu2 li:hover li:hover li a,
+ul#navmenu2 li.iehover li.iehover li a {
+  background: #EEE;
+  color: #666;
+}
+
+ul#navmenu2 li:hover li:hover li a:hover,
+ul#navmenu2 li:hover li:hover li:hover a,
+ul#navmenu2 li.iehover li.iehover li a:hover,
+ul#navmenu2 li.iehover li.iehover li.iehover a {
+  background: #CCC;
+  color: #FFF;
+}
+
+ul#navmenu2 li:hover li:hover li:hover li a,
+ul#navmenu2 li.iehover li.iehover li.iehover li a {
+  background: #EEE;
+  color: #666;
+}
+
+ul#navmenu2 li:hover li:hover li:hover li a:hover,
+ul#navmenu2 li.iehover li.iehover li.iehover li a:hover {
+  background: #CCC;
+  color: #FFF;
+}
+
+ul#navmenu2 ul,
+ul#navmenu2 ul ul,
+ul#navmenu2 ul ul ul {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 135px;
+
+}
+
+ul#navmenu2 li:hover ul ul,
+ul#navmenu2 li:hover ul ul ul,
+ul#navmenu2 li.iehover ul ul,
+ul#navmenu2 li.iehover ul ul ul { display: none;}
+
+ul#navmenu2 li:hover ul,
+ul#navmenu2 ul li:hover ul,
+ul#navmenu2 ul ul li:hover ul,
+ul#navmenu2 li.iehover ul,
+ul#navmenu2 ul li.iehover ul,
+ul#navmenu2 ul ul li.iehover ul { display: block;}
+
+/*-------------*/
+input.boton_comentar_foro{ width:100px; height:25px; background:url(../imagenes/btn-comentar-foro.jpg) no-repeat; border:none; cursor:pointer;}
